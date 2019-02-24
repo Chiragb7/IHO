@@ -16,6 +16,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -66,6 +67,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Run the view's session
         sceneView.session.run(configuration)
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11, *){
+        let alertController = UIAlertController(title: "IOS Version", message: "Congratulations!!Your IOS version is compatible with Augmented Reality Feature", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+        
+    
 }
+
