@@ -13,6 +13,23 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var sceneARButton: UIButton!
+    
+    //the click action listener for the touch model button
+    @IBAction func modelButtonClick(_ sender: AnyObject){
+        
+        //let button_label = sceneARButton.attributedTitle(for: UIControl.State.normal)?.string
+        let button_label = sender.currentTitle!
+        
+        // print that the button is pressed when the title pof the button touched on the app is "Touch Model Button"
+        if button_label == "Touch Model Button"
+        {
+            print("The Touch Model Button is pressed")
+            sceneARButton.setTitle("View Lucy Information", for: UIControl.State.selected)
+            sceneARButton.backgroundColor = UIColor.red
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +57,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addSubview(sceneARLabel)
         
         
-        let sceneARButton = UIButton(frame: CGRect(x: 50, y: 50, width: 300, height: 50))
+        let sceneARButton = UIButton(frame: CGRect(x: 80, y: 80, width: 200, height: 50))
         
         // setting the attributes for the sceneARButton
         // set the title for the button
         sceneARButton.setTitle("Touch Model Button", for: .normal)
         // set the color of the title
         sceneARButton.setTitleColor(UIColor.white, for: .normal)
+        // setting the radius of the button's border
+        sceneARButton.layer.cornerRadius = 10
+        // setting the width of the border
+        sceneARButton.layer.borderWidth = 1
+        // setting up the color of the border
+        sceneARButton.layer.borderColor = UIColor.white.cgColor
+        
+        sceneARButton.addTarget(self, action: #selector(modelButtonClick), for: .touchUpInside)
+        
     
         //adding the button to the view
         sceneView.addSubview(sceneARButton)
@@ -58,6 +84,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -67,5 +95,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
     }
+    
+    func onClick(_ sender: AnyObject?){
+        
+        if sender === sceneARButton {
+            
+            sceneARButton.setTitle("Viewing Lucy Info.", for: .normal)
+        }
+    }
+    
     
 }
