@@ -16,7 +16,9 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
@@ -25,6 +27,7 @@ public class ArActivity extends AppCompatActivity {
     private static final double MIN_OPENGL_VERSION = 3.0;
     private ArFragment arFragment;
     private ModelRenderable skullRenderable;
+    private ModelRenderable boneRenderable;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -38,7 +41,7 @@ public class ArActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.AR_fragment);
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
 
         ModelRenderable.builder()
                 .setSource(this, R.raw.skull)
@@ -46,10 +49,17 @@ public class ArActivity extends AppCompatActivity {
                 .thenAccept(renderable -> skullRenderable = renderable)
                 .exceptionally(
                         throwable -> {
-                            Toast toast =
-                                    Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            toast.show();
+                            Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG).show();
+                            return null;
+                        });
+
+        ModelRenderable.builder()
+                .setSource(this, R.raw.skull)
+                .build()
+                .thenAccept(renderable -> boneRenderable= renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG).show();
                             return null;
                         });
 
@@ -65,10 +75,29 @@ public class ArActivity extends AppCompatActivity {
                     AnchorNode anchorNode = new AnchorNode(anchor);
                     anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    // Create the transformable andy and add it to the anchor.
+                    // Create a node and add it to the anchor.
                     Node skull = new Node();
                     skull.setParent(anchorNode);
                     skull.setRenderable(skullRenderable);
+
+                    skull.setOnTapListener(new Node.OnTapListener() {
+                        @Override
+                        public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
+                            Util.createPopup(ArActivity.this,"Click", "Skull clicked");
+                        }
+                    });
+
+                    Node bone= new Node();
+                    bone.setParent(anchorNode);
+                    bone.setLocalPosition(new Vector3(0,0,2));
+                    bone.setRenderable(boneRenderable);
+
+                    bone.setOnTapListener(new Node.OnTapListener() {
+                        @Override
+                        public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
+                            Util.createPopup(ArActivity.this,"Click", "bone clicked");
+                        }
+                    });
                 });
     }
 

@@ -7,7 +7,7 @@
     tools:context=".ArActivity">
 
     <fragment android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:id="@+id/AR_fragment"
+        android:id="@+id/ar_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
