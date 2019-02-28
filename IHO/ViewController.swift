@@ -51,11 +51,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //adding the button to the view
         sceneView.addSubview(sceneARButton)
         
+        //to enable pop on click of a button
+        let testButton = UIButton(frame: CGRect(x:10, y:10, width:150, height:10))
+        testButton.setTitle("test", for: .normal)
+        testButton.setTitleColor(UIColor.red, for: .normal)
+        
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let imageLucy = anchor as? ARImageAnchor else { return
+            <#statements#>
+        }
+        let refImage = imageLucy.referenceImage;
+        
+        let planeGeometry = SCNPlane(width: 50, height: 50)
+        let material = SCNMaterial()
+        
+        material.diffuse.contents = UIColor.white
+        
+        let planeNode = SCNNode(geometry: planeGeometry)
+        
+        planeNode.geometry?.firstMaterial = material
+        
+        planeNode.name = "I am a part of Lucy"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
