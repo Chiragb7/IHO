@@ -10,10 +10,11 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var sceneARButton: UIButton!
+    var popUp: UIView!
     
     //the click action listener for the touch model button
     @IBAction func modelButtonClick(_ sender: AnyObject){
@@ -30,6 +31,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +80,48 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //adding the button to the view
         sceneView.addSubview(sceneARButton)
         
+        //adding the popup to the view
+//        self.view.addSubview(popUp)
+        
+//        sceneView.addSubview(popUp)
+        showPopUp()
+        
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
+    }
+    
+    func showPopUp(){
+        // setting up the popUpview
+        popUp  = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 200))
+        
+        //create a popup label to be displayed on the popup
+        let popLabel = UILabel(frame: CGRect(x: 100, y: 200, width: 200, height: 200))
+        //set the text of the label
+        popLabel.text = "Lucy Body Parts"
+        
+        //set the background color of the popup
+        popUp.backgroundColor = UIColor.white
+        
+        //add the pop up to the sceneview and the label to the popup
+        sceneView.addSubview(popUp)
+        popUp.addSubview(popLabel)
+        
+        //make sure that the centers match of the pop up and the label
+        popLabel.center = popUp.center
+        
+        // set the timer for the popup to be dispalyed on the view
+        //Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.cancelpopUp), userInfo: "Lucy Information", repeats: false)
+    }
+    
+    // a Objective C function to dismiss the popup from the super view of the app when timer is done
+    @objc func cancelpopUp(){
+        if popUp != nil {
+            // we can remove the alert after the timer goes off
+            popUp.removeFromSuperview()
+        }
     }
     
     
@@ -91,9 +131,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
+        
+        //var the_textField: UITextField?
+        
+//        let popUpMessage = UIAlertController(title: "PopupMessage", message: "The information about Lucy can be found here", preferredStyle: .alert)
+//
+//        let ok_button = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!)  in
+//            print("The OK button is pressed");
+//
+//        }
+//        popUpMessage.addAction(ok_button)
+//
+//        let exit_button = UIAlertAction(title: "EXIT", style: .default) { (action: UIAlertAction!) in
+//            print("The EXIT button is pressed");
+//
+//        }
+//
+//        popUpMessage.addAction(exit_button)
+//
+////        popUpMessage.addTextField  { (textField) -> Void in
+////            the_textField = textField
+////        }
+////
+//        self.present(popUpMessage, animated: true, completion: nil)
+        
     }
     
     func onClick(_ sender: AnyObject?){
