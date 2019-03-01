@@ -32,8 +32,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -122,6 +120,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
             // we can remove the alert after the timer goes off
             popUp.removeFromSuperview()
         }
+        
+        //calling the created custom POPUP View from the sceneview
+        let popUp_mode = popUpDialog(title: "The information regarding Lucy parts go here")
+        //calling the show_popup() created in the Modal for popup "popModal.swift"
+        popUp_mode.show_popup()
+        
     }
     
     
