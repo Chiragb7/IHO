@@ -1,4 +1,4 @@
-package com.example.iho_ar;
+package com.iho.iho_ar;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -28,10 +28,10 @@ public class ArActivity extends AppCompatActivity {
     private static final String TAG = ArActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
     private ArFragment arFragment;
-    private ModelRenderable skullRenderable;
-    private ModelRenderable boneRenderable;
+    AnchorNode anchorNode;
 
     private List<BoneModel> boneModelList = new ArrayList<>();
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,68 +41,72 @@ public class ArActivity extends AppCompatActivity {
             return;
         }
 
-
-
         setContentView(R.layout.activity_main);
-        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
 
         initBoneModelList();
-        ModelRenderable.builder()
-                .setSource(this, R.raw.skull)
-                .build()
-                .thenAccept(renderable -> skullRenderable = renderable)
-                .exceptionally(
-                        throwable -> {
-                            Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG).show();
-                            return null;
-                        });
 
-        ModelRenderable.builder()
-                .setSource(this, R.raw.skull)
-                .build()
-                .thenAccept(renderable -> boneRenderable= renderable)
-                .exceptionally(
-                        throwable -> {
-                            Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG).show();
-                            return null;
-                        });
+        createRenderables();
 
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (skullRenderable == null) {
+                    if (!renderablesReady()) {
+                        Toast.makeText(this,"Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     // Create the Anchor.
                     Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
+                    anchorNode = new AnchorNode(anchor);
                     anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    // Create a node and add it to the anchor.
-                    Node skull = new Node();
-                    skull.setParent(anchorNode);
-                    skull.setRenderable(skullRenderable);
-
-                    skull.setOnTapListener(new Node.OnTapListener() {
-                        @Override
-                        public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
-                            Util.createPopup(ArActivity.this,"Click", "Skull clicked");
-                        }
-                    });
-
-                    Node bone= new Node();
-                    bone.setParent(anchorNode);
-                    bone.setLocalPosition(new Vector3(0,0,2));
-                    bone.setRenderable(boneRenderable);
-
-                    bone.setOnTapListener(new Node.OnTapListener() {
-                        @Override
-                        public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
-                            Util.createPopup(ArActivity.this,"Click", "bone clicked");
-                        }
-                    });
+                    createNodes();
                 });
+    }
+
+    private boolean renderablesReady(){
+        for(BoneModel model: boneModelList){
+            if(model.getRenderable()==null)
+                return false;
+        }
+        return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void createRenderables(){
+        for(int i =0; i<boneModelList.size(); i++) {
+            BoneModel model = boneModelList.get(i);
+            ModelRenderable.builder()
+                    .setSource(this, model.getResId())
+                    .build()
+                    .thenAccept(renderable -> model.setRenderable(renderable))
+                    .exceptionally(
+                            throwable -> {
+                                Toast.makeText(this, "Unable to load renderable", Toast.LENGTH_LONG).show();
+                                return null;
+                            });
+        }
+    }
+
+    private void createNodes(){
+        for(BoneModel model: boneModelList){
+            createNode(model);
+        }
+    }
+
+    private void createNode(BoneModel boneModel){
+
+        Node bone= new Node();
+        bone.setParent(anchorNode);
+        bone.setLocalPosition(boneModel.getPosition());
+        bone.setRenderable(boneModel.getRenderable());
+
+        bone.setOnTapListener(new Node.OnTapListener() {
+            @Override
+            public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
+                Util.createPopup(ArActivity.this,boneModel.getName(), boneModel.getDescription());
+            }
+        });
     }
 
     public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
@@ -127,8 +131,8 @@ public class ArActivity extends AppCompatActivity {
     }
 
     private void initBoneModelList(){
-        boneModelList.add(new BoneModel("Skull","This is a Skull",R.raw.skull));
-        boneModelList.add(new BoneModel("Bone","This is a bone",R.raw.bone));
+        boneModelList.add(new BoneModel("Skull","This is a Skull",R.raw.skull, new Vector3(0,0,0)));
+        boneModelList.add(new BoneModel("Bone","This is a bone",R.raw.bone, new Vector3(0,0,0.5f)));
 
     }
 }

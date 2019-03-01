@@ -1,10 +1,8 @@
-package com.example.iho_ar;
+package com.iho.iho_ar;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.View;
-import android.widget.Toast;
 
 public class Util {
 

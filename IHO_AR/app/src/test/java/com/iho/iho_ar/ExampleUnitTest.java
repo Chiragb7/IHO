@@ -1,4 +1,4 @@
-package com.example.iho_ar;
+package com.iho.iho_ar;
 
 import org.junit.Test;
 
