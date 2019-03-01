@@ -8,7 +8,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
@@ -22,6 +21,9 @@ import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArActivity extends AppCompatActivity {
     private static final String TAG = ArActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
@@ -29,6 +31,7 @@ public class ArActivity extends AppCompatActivity {
     private ModelRenderable skullRenderable;
     private ModelRenderable boneRenderable;
 
+    private List<BoneModel> boneModelList = new ArrayList<>();
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class ArActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
 
+        initBoneModelList();
         ModelRenderable.builder()
                 .setSource(this, R.raw.skull)
                 .build()
@@ -120,5 +124,11 @@ public class ArActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private void initBoneModelList(){
+        boneModelList.add(new BoneModel("Skull","This is a Skull",R.raw.skull));
+        boneModelList.add(new BoneModel("Bone","This is a bone",R.raw.bone));
+
     }
 }
