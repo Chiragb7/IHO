@@ -71,6 +71,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
         super.viewDidAppear(animated)
         if #available(iOS 11, *){
         let alertController = UIAlertController(title: "IOS Version", message: "Congratulations!!Your IOS version is compatible with Augmented Reality Feature", preferredStyle: .alert)
@@ -82,6 +84,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(alertController, animated: true, completion: nil)
+        }
+        
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            // Already Authorized
+        } else {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted: Bool) -> Void in
+                if granted == true {
+                    print("User granted")
+                } else {
+                    print("User rejected")
+                }
+            })
         }
     }
         
