@@ -53,7 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addSubview(sceneARButton)
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/skull/skull.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
