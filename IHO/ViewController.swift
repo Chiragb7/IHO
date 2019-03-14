@@ -10,9 +10,18 @@ import UIKit
 import SceneKit
 import ARKit
 
+struct FossilInfo {
+    let name: String
+    let image: UIImage
+    let information: String
+}
+
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    var fossilImage : FossilInfo?
+    
+    let images = ["lucy" : FossilInfo(name: "Lucy", image: UIImage(named: "art.scnassets/ship.scn")!, information: "IHO has replicas of Lucy‘s bones, which were produced in the Institute‘s casting and molding laboratories. The “real” Lucy is stored in a specially constructed safe in the Paleoanthropology Laboratories of the National Museum of Ethiopia in Addis Ababa, Ethiopia.")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
