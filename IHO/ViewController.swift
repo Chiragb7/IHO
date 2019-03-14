@@ -35,6 +35,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //adding the debugging options to our scene
+        //displays the world origin that the image is placed in the scene
+        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin]
+        
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -83,6 +87,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         
 //        sceneView.addSubview(popUp)
         showPopUp()
+        
+        //adding a tap object to the AR Scene View to display the popup
+        //when an object is tapped the function displaypopUp is called to display the popUp Dialog box
+        let tap = UITapGestureRecognizer(target: self, action: #selector(displaypopUp(recognizer:)))
+        
+        //adding the recognizer to the AR scene view
+        sceneView.addGestureRecognizer(tap)
+        
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -171,6 +183,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
             sceneARButton.setTitle("Viewing Lucy Info.", for: .normal)
         }
     }
+    
+    @objc func displaypopUp(recognizer: UITapGestureRecognizer){
+        
+        if recognizer.state == .ended  {
+            //get the tapped location - where the node is tapped on the screen
+            //here Lucy - the body part that is tapped on the scene view
+            let tapped_location: CGPoint = recognizer.location(in: sceneView)
+            //get the value for the number of taps on the same body part of Lucy
+            // to determine if we could show the respective information in a PopUp Dialog
+            let taps = self.sceneView?.hitTest(tapped_location, options: nil)
+            if !taps!.isEmpty{
+                //show the popup of the location if the number of taps is >1
+                showPopUp()
+                //let tappedSCNNode = taps.first?.node
+            }
+        }
+    }
+    
+    
     
     
 }
