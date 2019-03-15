@@ -72,11 +72,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageLucy = anchor as? ARImageAnchor else { return
             <#statements#>
         }
-        let refImage = imageLucy.referenceImage;
+        _ = imageLucy.referenceImage;
         
         let planeGeometry = SCNPlane(width: 50, height: 50)
         let material = SCNMaterial()
@@ -88,6 +88,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.geometry?.firstMaterial = material
         
         planeNode.name = "I am a part of Lucy"
+        
+    }*/
+    
+    //Function to render the information box
+    func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
+        if let imageAnchor = anchor as? ARImageAnchor,
+            let referenceImageName = imageAnchor.referenceImage.name
+        
+        {
+            self.performSegue(withIdentifier: "displayImageInformation", sender: self)
+        }
+        
+        return nil
         
     }
     
