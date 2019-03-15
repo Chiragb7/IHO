@@ -1,4 +1,4 @@
-package com.iho.iho_ar;
+package com.iho.iho_ar.models;
 
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.Renderable;

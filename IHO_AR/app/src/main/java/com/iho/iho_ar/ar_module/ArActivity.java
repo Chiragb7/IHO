@@ -1,4 +1,4 @@
-package com.iho.iho_ar;
+package com.iho.iho_ar.ar_module;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -17,20 +17,21 @@ import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
-import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
+import com.iho.iho_ar.R;
+import com.iho.iho_ar.Util;
+import com.iho.iho_ar.models.BoneModel;
+import com.iho.iho_ar.models.BoneModelList;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ArActivity extends AppCompatActivity {
+public class ArActivity extends AppCompatActivity implements ArView {
     private static final String TAG = ArActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
     private ArFragment arFragment;
+    private ArPresenter presenter;
     AnchorNode anchorNode;
-
-    private List<BoneModel> boneModelList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -43,15 +44,15 @@ public class ArActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        initBoneModelList();
+        presenter = new ArPresenterImpl(this);
 
-        createRenderables();
+        presenter.createRenderables();
 
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ar_fragment);
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (!renderablesReady()) {
+                    if (!presenter.renderablesReady()) {
                         Toast.makeText(this,"Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -60,22 +61,22 @@ public class ArActivity extends AppCompatActivity {
                     anchorNode = new AnchorNode(anchor);
                     anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    createNodes();
+                    presenter.createNodes();
                 });
     }
 
-    private boolean renderablesReady(){
-        for(BoneModel model: boneModelList){
-            if(model.getRenderable()==null)
-                return false;
-        }
-        return true;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void createRenderables(){
-        for(int i =0; i<boneModelList.size(); i++) {
-            BoneModel model = boneModelList.get(i);
+    @Override
+    public void createRenderables(List<BoneModel> boneModelList) {
+        List<BoneModel> models = boneModelList;
+        for(int i =0; i<models.size(); i++) {
+            BoneModel model = models.get(i);
             ModelRenderable.builder()
                     .setSource(this, model.getResId())
                     .build()
@@ -88,7 +89,8 @@ public class ArActivity extends AppCompatActivity {
         }
     }
 
-    private void createNodes(){
+    @Override
+    public void createNodes(List<BoneModel> boneModelList) {
         for(BoneModel model: boneModelList){
             createNode(model);
         }
@@ -104,7 +106,7 @@ public class ArActivity extends AppCompatActivity {
         bone.setOnTapListener(new Node.OnTapListener() {
             @Override
             public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
-                Util.createPopup(ArActivity.this,boneModel.getName(), boneModel.getDescription());
+                presenter.createPopup(boneModel.getName(), boneModel.getDescription());
             }
         });
     }
@@ -130,9 +132,8 @@ public class ArActivity extends AppCompatActivity {
         return true;
     }
 
-    private void initBoneModelList(){
-        boneModelList.add(new BoneModel("Skull","This is a Skull",R.raw.skull, new Vector3(0,0,0)));
-        boneModelList.add(new BoneModel("Bone","This is a bone",R.raw.bone, new Vector3(0,0,0.5f)));
-
+    @Override
+    public void showPopup(String name, String description) {
+        Util.createPopup(this, name, description);
     }
 }
