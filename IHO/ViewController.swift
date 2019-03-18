@@ -22,9 +22,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var fossilImage : FossilInfo?
     
     let images = ["lucy" : FossilInfo(name: "Lucy", image: UIImage(named: "art.scnassets/ship.scn")!, information: "IHO has replicas of Lucy‘s bones, which were produced in the Institute‘s casting and molding laboratories. The “real” Lucy is stored in a specially constructed safe in the Paleoanthropology Laboratories of the National Museum of Ethiopia in Addis Ababa, Ethiopia.")]
+
+class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
+
+    @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var sceneARButton: UIButton!
+    var popUp: UIView!
+    
+    //the click action listener for the touch model button
+    @IBAction func modelButtonClick(_ sender: AnyObject){
+        
+        //let button_label = sceneARButton.attributedTitle(for: UIControl.State.normal)?.string
+        let button_label = sender.currentTitle!
+        
+        // print that the button is pressed when the title pof the button touched on the app is "Touch Model Button"
+        if button_label == "Touch Model Button"
+        {
+            print("The Touch Model Button is pressed")
+            sceneARButton.setTitle("View Lucy Information", for: UIControl.State.selected)
+            sceneARButton.backgroundColor = UIColor.red
+        }
+        
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
+        //adding the debugging options to our scene
+        //displays the world origin that the image is placed in the scene
+        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin]
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -49,29 +77,55 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addSubview(sceneARLabel)
         
         
-        let sceneARButton = UIButton(frame: CGRect(x: 50, y: 50, width: 300, height: 50))
+        let sceneARButton = UIButton(frame: CGRect(x: 80, y: 80, width: 200, height: 50))
         
         // setting the attributes for the sceneARButton
         // set the title for the button
         sceneARButton.setTitle("Touch Model Button", for: .normal)
         // set the color of the title
         sceneARButton.setTitleColor(UIColor.white, for: .normal)
+        // setting the radius of the button's border
+        sceneARButton.layer.cornerRadius = 10
+        // setting the width of the border
+        sceneARButton.layer.borderWidth = 1
+        // setting up the color of the border
+        sceneARButton.layer.borderColor = UIColor.white.cgColor
+        
+        sceneARButton.addTarget(self, action: #selector(modelButtonClick), for: .touchUpInside)
+        
     
         //adding the button to the view
         sceneView.addSubview(sceneARButton)
         
+
         //to enable pop on click of a button
         let testButton = UIButton(frame: CGRect(x:10, y:10, width:150, height:10))
         testButton.setTitle("test", for: .normal)
         testButton.setTitleColor(UIColor.red, for: .normal)
+
+        //adding the popup to the view
+//        self.view.addSubview(popUp)
+        
+//        sceneView.addSubview(popUp)
+        showPopUp()
+        
+        //adding a tap object to the AR Scene View to display the popup
+        //when an object is tapped the function displaypopUp is called to display the popUp Dialog box
+        let tap = UITapGestureRecognizer(target: self, action: #selector(displaypopUp(recognizer:)))
+        
+        //adding the recognizer to the AR scene view
+        sceneView.addGestureRecognizer(tap)
+        
+
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/skull/skull.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
     }
     
+
     /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageLucy = anchor as? ARImageAnchor else { return
             <#statements#>
@@ -104,14 +158,139 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+
+    func showPopUp(){
+        // setting up the popUpview
+        popUp  = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 200))
+        
+        //create a popup label to be displayed on the popup
+        let popLabel = UILabel(frame: CGRect(x: 100, y: 200, width: 200, height: 200))
+        //set the text of the label
+        popLabel.text = "Lucy Body Parts"
+        
+        //set the background color of the popup
+        popUp.backgroundColor = UIColor.white
+        
+        //add the pop up to the sceneview and the label to the popup
+        sceneView.addSubview(popUp)
+        popUp.addSubview(popLabel)
+        
+        //make sure that the centers match of the pop up and the label
+        popLabel.center = popUp.center
+        
+        // set the timer for the popup to be dispalyed on the view
+        //Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.cancelpopUp), userInfo: "Lucy Information", repeats: false)
+    }
+    
+    // a Objective C function to dismiss the popup from the super view of the app when timer is done
+    @objc func cancelpopUp(){
+        if popUp != nil {
+            // we can remove the alert after the timer goes off
+            popUp.removeFromSuperview()
+        }
+        
+        //calling the created custom POPUP View from the sceneview
+        let popUp_mode = popUpDialog(title: "The information regarding Lucy parts go here")
+        //calling the show_popup() created in the Modal for popup "popModal.swift"
+        popUp_mode.show_popup()
+        
+    }
+    
+    
+    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
+        
+
+        //var the_textField: UITextField?
+        
+//        let popUpMessage = UIAlertController(title: "PopupMessage", message: "The information about Lucy can be found here", preferredStyle: .alert)
+//
+//        let ok_button = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!)  in
+//            print("The OK button is pressed");
+//
+//        }
+//        popUpMessage.addAction(ok_button)
+//
+//        let exit_button = UIAlertAction(title: "EXIT", style: .default) { (action: UIAlertAction!) in
+//            print("The EXIT button is pressed");
+//
+//        }
+//
+//        popUpMessage.addAction(exit_button)
+//
+////        popUpMessage.addTextField  { (textField) -> Void in
+////            the_textField = textField
+////        }
+////
+//        self.present(popUpMessage, animated: true, completion: nil)
+        
     }
     
+    func onClick(_ sender: AnyObject?){
+        
+        if sender === sceneARButton {
+            
+            sceneARButton.setTitle("Viewing Lucy Info.", for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        super.viewDidAppear(animated)
+        if #available(iOS 11, *){
+        let alertController = UIAlertController(title: "IOS Version", message: "Congratulations!!Your IOS version is compatible with Augmented Reality Feature", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            // Already Authorized
+        } else {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted: Bool) -> Void in
+                if granted == true {
+                    print("User granted")
+                } else {
+                    print("User rejected")
+                }
+            })
+
+        }
+    }
+        
+    
+    @objc func displaypopUp(recognizer: UITapGestureRecognizer){
+        
+        if recognizer.state == .ended  {
+            //get the tapped location - where the node is tapped on the screen
+            //here Lucy - the body part that is tapped on the scene view
+            let tapped_location: CGPoint = recognizer.location(in: sceneView)
+            //get the value for the number of taps on the same body part of Lucy
+            // to determine if we could show the respective information in a PopUp Dialog
+            let taps = self.sceneView?.hitTest(tapped_location, options: nil)
+            if !taps!.isEmpty{
+                //show the popup of the location if the number of taps is >1
+                showPopUp()
+                //let tappedSCNNode = taps.first?.node
+            }
+        }
+    }
+    
+    
+    
+    
 }
+
