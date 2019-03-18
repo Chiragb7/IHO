@@ -17,6 +17,7 @@ import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.iho.iho_ar.R;
@@ -101,6 +102,11 @@ public class ArActivity extends AppCompatActivity implements ArView {
         Node bone= new Node();
         bone.setParent(anchorNode);
         bone.setLocalPosition(boneModel.getPosition());
+        if(boneModel.getName().equals("Bone"))
+            bone.setLocalScale(new Vector3(0.1f,0.1f,0.1f));
+        else
+            bone.setLocalScale(new Vector3(0.5f,0.5f,0.5f));
+
         bone.setRenderable(boneModel.getRenderable());
 
         bone.setOnTapListener(new Node.OnTapListener() {
