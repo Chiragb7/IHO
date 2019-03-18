@@ -10,6 +10,19 @@ import UIKit
 import SceneKit
 import ARKit
 
+struct FossilInfo {
+    let name: String
+    let image: UIImage
+    let information: String
+}
+
+class ViewController: UIViewController, ARSCNViewDelegate {
+
+    @IBOutlet var sceneView: ARSCNView!
+    var fossilImage : FossilInfo?
+    
+    let images = ["lucy" : FossilInfo(name: "Lucy", image: UIImage(named: "art.scnassets/ship.scn")!, information: "IHO has replicas of Lucy‘s bones, which were produced in the Institute‘s casting and molding laboratories. The “real” Lucy is stored in a specially constructed safe in the Paleoanthropology Laboratories of the National Museum of Ethiopia in Addis Ababa, Ethiopia.")]
+
 class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
 
     @IBOutlet var sceneView: ARSCNView!
@@ -31,6 +44,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         }
         
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +97,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         //adding the button to the view
         sceneView.addSubview(sceneARButton)
         
+
+        //to enable pop on click of a button
+        let testButton = UIButton(frame: CGRect(x:10, y:10, width:150, height:10))
+        testButton.setTitle("test", for: .normal)
+        testButton.setTitleColor(UIColor.red, for: .normal)
+
         //adding the popup to the view
 //        self.view.addSubview(popUp)
         
@@ -96,6 +116,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         //adding the recognizer to the AR scene view
         sceneView.addGestureRecognizer(tap)
         
+
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/skull/skull.scn")!
@@ -104,6 +125,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         sceneView.scene = scene
     }
     
+
+    /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let imageLucy = anchor as? ARImageAnchor else { return
+            <#statements#>
+        }
+        _ = imageLucy.referenceImage;
+        
+        let planeGeometry = SCNPlane(width: 50, height: 50)
+        let material = SCNMaterial()
+        
+        material.diffuse.contents = UIColor.white
+        
+        let planeNode = SCNNode(geometry: planeGeometry)
+        
+        planeNode.geometry?.firstMaterial = material
+        
+        planeNode.name = "I am a part of Lucy"
+        
+    }*/
+    
+    //Function to render the information box
+    func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
+        if let imageAnchor = anchor as? ARImageAnchor,
+            let referenceImageName = imageAnchor.referenceImage.name
+        
+        {
+            self.performSegue(withIdentifier: "displayImageInformation", sender: self)
+        }
+        
+        return nil
+        
+    }
+    
+
     func showPopUp(){
         // setting up the popUpview
         popUp  = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 200))
@@ -143,6 +198,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
     
     
     
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
