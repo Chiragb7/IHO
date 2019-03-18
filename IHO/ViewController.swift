@@ -34,6 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         //adding the debugging options to our scene
         //displays the world origin that the image is placed in the scene
@@ -97,7 +98,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/skull/skull.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -151,6 +152,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         // Run the view's session
         sceneView.session.run(configuration)
         
+
         //var the_textField: UITextField?
         
 //        let popUpMessage = UIAlertController(title: "PopupMessage", message: "The information about Lucy can be found here", preferredStyle: .alert)
@@ -181,8 +183,38 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         if sender === sceneARButton {
             
             sceneARButton.setTitle("Viewing Lucy Info.", for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        super.viewDidAppear(animated)
+        if #available(iOS 11, *){
+        let alertController = UIAlertController(title: "IOS Version", message: "Congratulations!!Your IOS version is compatible with Augmented Reality Feature", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            // Already Authorized
+        } else {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted: Bool) -> Void in
+                if granted == true {
+                    print("User granted")
+                } else {
+                    print("User rejected")
+                }
+            })
+
         }
     }
+        
     
     @objc func displaypopUp(recognizer: UITapGestureRecognizer){
         
@@ -205,3 +237,4 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
     
     
 }
+
