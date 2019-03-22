@@ -22,6 +22,6 @@ class FossilInfoViewController : UIViewController {
             self.fossilNameLabel.text = actualFossilInfo.name
             self.imageView.image = actualFossilInfo.image
             self.informationText.text = actualFossilInfo.information
-        };<#code#>
+        };
     }
 }

@@ -65,7 +65,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         
         // setting the different properties of the sceneARLabel
         // set the respective text
-        sceneARLabel.text = "Air Plane Label"
+        sceneARLabel.text = "Lucy"
         // set the alignment of the label
         sceneARLabel.textAlignment = .left
         // set the font size of the label
@@ -119,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
 
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/skull/skull.scn")!
+        let scene = SCNScene(named: "art.scnassets/Lucy/Lucy.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -197,8 +197,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
     }
     
     
-    
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -271,7 +269,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
         }
     }
         
-    
     @objc func displaypopUp(recognizer: UITapGestureRecognizer){
         
         if recognizer.state == .ended  {
@@ -288,9 +285,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate{
             }
         }
     }
-    
-    
-    
-    
+    }
 }
 
