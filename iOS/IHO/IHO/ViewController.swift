@@ -13,6 +13,16 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    //2. Create Our ARWorld Tracking Configuration
+    let configuration = ARWorldTrackingConfiguration()
+    
+    //3. Create Our Session
+    let augmentedRealitySession = ARSession()
+    
+    //4. Create A Variable To Store The Current Nodes Rotation Around It's Y-Axis
+    var currentAngleY: Float = 0.0
+    var isRotating = false
+    var currentNode: SCNNode?
     @IBOutlet var infoLabel: UILabel!
     
     override func viewDidLoad() {
@@ -26,10 +36,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/Lucy.scn")!
+        //2. Add A UIPinchGestureRecognizer So We Can Scale Our TextNode
+        let scaleGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCurrentNode(_:)))
+        self.view.addGestureRecognizer(scaleGesture)
+        
+        //3. Add A Tap Gesture Recogizer So We Can Place Our TextNode
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(placeOrAssignNode(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+        
         
         // Set the scene to the view
         sceneView.scene = scene
     }
+    
+    
     
     func updatePositionAndOrientationOf(_ node: SCNNode, withPosition position: SCNVector3, relativeTo referenceNode: SCNNode) {
         let referenceNodeTransform = matrix_float4x4(referenceNode.transform)
