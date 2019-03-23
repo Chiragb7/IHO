@@ -47,3 +47,8 @@ sceneform.asset('sampledata/skull.obj',
         'default',
         'sampledata/skull.sfa',
         'src/main/res/raw/skull')
+
+sceneform.asset('sampledata/Lucy.obj',
+        'default',
+        'sampledata/Lucy.sfa',
+        'src/main/assets/Lucy')
