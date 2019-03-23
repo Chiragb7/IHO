@@ -135,4 +135,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         configuration.planeDetection = .horizontal
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
+    //-----------------------
+    //MARK: Touch Interaction
+    //-----------------------
+    
+    /// Performs An ARHitTest Or SCNHitTest So We Can Place Or Assign Our TextNode
+    ///
+    /// - Parameter gesture: UITapGestureRecognizer
+    @objc func placeOrAssignNode(_ gesture: UITapGestureRecognizer){
+        
+        //1. Get The Current Location Of The Tap
+        let currentTouchLocation = gesture.location(in: self.sceneView)
+        
+        //2. If We Hit An SCNNode Set It As The Current Node So We Can Interact With It
+        if let nodeHitTest = self.sceneView.hitTest(currentTouchLocation, options: nil).first?.node{
+            
+            currentNode = nodeHitTest
+            return
+        }
+        
+        //3. Do An ARHitTest For Features Points So We Can Place An SCNNode
+        if let hitTest = self.sceneView.hitTest(currentTouchLocation, types: .featurePoint).first {
+            
+            //4. Get The World Transform
+            let hitTestPosition = hitTest.worldTransform.columns.3
+            
+            //5. Add The TestNode At The Desired Position
+            createTextFromPosition(SCNVector3(hitTestPosition.x, hitTestPosition.y, hitTestPosition.z))
+            return
+            
+        }
+        currentNode?.removeFromParentNode()
+        
+    }
 }
