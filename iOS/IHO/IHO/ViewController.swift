@@ -50,7 +50,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     
-    
     func updatePositionAndOrientationOf(_ node: SCNNode, withPosition position: SCNVector3, relativeTo referenceNode: SCNNode) {
         let referenceNodeTransform = matrix_float4x4(referenceNode.transform)
         
@@ -173,5 +172,79 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         currentNode?.removeFromParentNode()
         
+    }
+    
+    //-------------------
+    //MARK: Node Creation
+    //-------------------
+    
+    /// Creates An SCNNode With An SCNTextGeometry
+    ///
+    /// - Parameter position: SCNVector3
+    func createTextFromPosition(_ position: SCNVector3){
+        
+        let textNode = SCNNode()
+        
+        //1. Create The Text Geometry With String & Depth Parameters
+        let textGeometry = SCNText(string: "Lucy Body Part" , extrusionDepth: 1)
+        
+        //2. Set The Font With Our Set Font & Size
+        textGeometry.font = UIFont(name: "Helvatica", size: 1)
+        
+        //3. Set The Flatness To Zero (This Makes The Text Look Smoother)
+        textGeometry.flatness = 0
+        
+        //4. Set The Colour Of The Text
+        textGeometry.firstMaterial?.diffuse.contents = UIColor.white
+        
+        //5. Set The Text's Material
+        textNode.geometry = textGeometry
+        
+        //6. Set The Pivot At The Center
+        let min = textNode.boundingBox.min
+        let max = textNode.boundingBox.max
+        
+        textNode.pivot = SCNMatrix4MakeTranslation(
+            min.x + (max.x - min.x)/2,
+            min.y + (max.y - min.y)/2,
+            min.z + (max.z - min.z)/2
+        )
+        
+        //7. Scale The Text So We Can Actually See It!
+        textNode.scale = SCNVector3(0.005, 0.005 , 0.005)
+        
+        //8. Add It To The Hierachy & Position It
+        self.sceneView.scene.rootNode.addChildNode(textNode)
+        textNode.position = position
+        
+        //9. Set It As The Current Node
+        currentNode = textNode
+    }
+    
+    
+    //-------------
+    //MARK: Scaling
+    //-------------
+    
+    /// Scales The Currently Selected Node
+    ///
+    /// - Parameter gesture: UIPinchGestureRecognizer
+    @objc func scaleCurrentNode(_ gesture: UIPinchGestureRecognizer) {
+        
+        if !isRotating, let selectedNode = currentNode{
+            
+            if gesture.state == .changed {
+                
+                let pinchScaleX: CGFloat = gesture.scale * CGFloat((selectedNode.scale.x))
+                let pinchScaleY: CGFloat = gesture.scale * CGFloat((selectedNode.scale.y))
+                let pinchScaleZ: CGFloat = gesture.scale * CGFloat((selectedNode.scale.z))
+                selectedNode.scale = SCNVector3Make(Float(pinchScaleX), Float(pinchScaleY), Float(pinchScaleZ))
+                gesture.scale = 1
+                
+            }
+            
+            if gesture.state == .ended {}
+        }
+        currentNode?.removeFromParentNode()
     }
 }
