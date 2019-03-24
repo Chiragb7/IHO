@@ -14,8 +14,8 @@ public class IhoApplication extends Application {
     }
 
     private void initBoneModelList(){
-        BoneModelList.getInstance().addToBoneModelList(new BoneModel("Skull","This is a Skull",R.raw.skull, new Vector3(0,0,0.5f)));
-        BoneModelList.getInstance().addToBoneModelList(new BoneModel("Bone","This is a bone",R.raw.bone, new Vector3(0,0,0)));
+        //BoneModelList.getInstance().addToBoneModelList(new BoneModel("Skull","This is a Skull",R.raw.skull, new Vector3(0,0,0.5f)));
+        //BoneModelList.getInstance().addToBoneModelList(new BoneModel("Bone","This is a bone",R.raw.bone, new Vector3(0,0,0)));
 
     }
 }
