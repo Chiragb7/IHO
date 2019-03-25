@@ -11,6 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
 
     @IBOutlet var sceneView: ARSCNView!
     //2. Create Our ARWorld Tracking Configuration
@@ -25,28 +26,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var currentNode: SCNNode?
     @IBOutlet var infoLabel: UILabel!
     
+    func addLucy(x: Float = 0, y: Float = -0.02, z: Float = -0.0671) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/Lucy.scn") else { return }
+        let LucyNode = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        
+        for childNode in LucySceneChildNodes {
+            LucyNode.addChildNode(childNode)
+        }
+        
+        LucyNode.position = SCNVector3(x, y, z)
+        LucyNode.scale = SCNVector3(0.002, 0.002, 0.002)
+        sceneView.scene.rootNode.addChildNode(LucyNode)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the view's delegate
         sceneView.delegate = self
-        
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/Lucy.scn")!
-        //2. Add A UIPinchGestureRecognizer So We Can Scale Our TextNode
-        let scaleGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCurrentNode(_:)))
-        self.view.addGestureRecognizer(scaleGesture)
-        
-        //3. Add A Tap Gesture Recogizer So We Can Place Our TextNode
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(placeOrAssignNode(_:)))
-        self.view.addGestureRecognizer(tapGesture)
-        
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        addLucy()
     }
     
     
@@ -189,7 +189,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let textGeometry = SCNText(string: "Lucy Body Part" , extrusionDepth: 1)
         
         //2. Set The Font With Our Set Font & Size
-        textGeometry.font = UIFont(name: "Helvatica", size: 1)
+        textGeometry.font = UIFont(name: "Times new roman", size: 0.05)
         
         //3. Set The Flatness To Zero (This Makes The Text Look Smoother)
         textGeometry.flatness = 0
