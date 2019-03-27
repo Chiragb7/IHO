@@ -188,6 +188,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //1. Create The Text Geometry With String & Depth Parameters
         let textGeometry = SCNText(string: "Lucy Body Part" , extrusionDepth: 1)
         
+        if let textGeometry = textNode.geometry as? SCNText {
+            textGeometry.string = "Evidence for Bipedality: \nThe pelvis is wide and bowl-shaped,\n as it is in humans"
+        }
+        
+        // Setting up the border of the text as a rectangle
+        textGeometry.containerFrame = CGRect(origin: .zero, size: CGSize(width: 0.7, height: 2))
+        
+        // Initializing other properties of the text node like the truncation Mode for the text geometry and
+        // the boolean of isWarpped inside a container frame or not
+        // and the alignment of the text inside the frame
+        textGeometry.truncationMode = kCATruncationNone
+        textGeometry.alignmentMode = kCAAlignmentLeft
+        textGeometry.isWrapped = true
+        
         //2. Set The Font With Our Set Font & Size
         textGeometry.font = UIFont(name: "Times new roman", size: 0.05)
         
@@ -204,11 +218,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let min = textNode.boundingBox.min
         let max = textNode.boundingBox.max
         
-        textNode.pivot = SCNMatrix4MakeTranslation(
-            min.x + (max.x - min.x)/2,
-            min.y + (max.y - min.y)/2,
-            min.z + (max.z - min.z)/2
-        )
+//        textNode.pivot = SCNMatrix4MakeTranslation(
+//            min.x + (max.x - min.x)/2,
+//            min.y + (max.y - min.y)/2,
+//            min.z + (max.z - min.z)/2
+//        )
+        
+//        SCNVector3 min, max;
+//        [textNode getBoundingBoxMin:&min max:&max];
+//        subnode.position = SCNVector3Make((max.x - min.x) / 2 + min.x, (max.y - min.y) / 2 + min.y, 0);
+        
+//        let (min, max) = textNode.boundingBox
+        
+        // Having the text node in the center for the visibility by changing the
+        // pivot of the respective geometry
+        let dx = min.x + 0.5 * (max.x - min.x)
+        let dy = min.y + 0.5 * (max.y - min.y)
+        let dz = min.z + 0.5 * (max.z - min.z)
+        textNode.pivot = SCNMatrix4MakeTranslation(dx, dy, dz)
         
         //7. Scale The Text So We Can Actually See It!
         textNode.scale = SCNVector3(0.005, 0.005 , 0.005)
