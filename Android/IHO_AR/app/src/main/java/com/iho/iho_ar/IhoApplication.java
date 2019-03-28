@@ -14,7 +14,10 @@ public class IhoApplication extends Application {
     }
 
     private void initBoneModelList(){
+        Vector3 buttonScale = new Vector3(0.1f,0.1f,0.1f);
         BoneModelList.getInstance().addToBoneModelList(new BoneModel("Lucy","",R.raw.lucy,
                 new Vector3(0,0,0), false));
+        BoneModelList.getInstance().addToBoneModelList(new BoneModel("Button","",R.raw.button2,
+                new Vector3(0,0,0), new Vector3(0.1f,0.1f,0.1f)));
     }
 }

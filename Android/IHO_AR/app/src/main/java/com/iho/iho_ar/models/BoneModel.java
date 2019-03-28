@@ -9,6 +9,7 @@ public class BoneModel {
     private int resId;
     private Renderable renderable;
     private Vector3 position;
+    private Vector3 scale;
     private boolean isClickable;
 
     public BoneModel(String name, String description, int id, Vector3 position) {
@@ -19,12 +20,29 @@ public class BoneModel {
         this.isClickable = true;
     }
 
+    public BoneModel(String name, String description, int id, Vector3 position, Vector3 scale) {
+        this.name = name;
+        this.description = description;
+        this.resId = id;
+        this.position = position;
+        this.scale = scale;
+        this.isClickable = true;
+    }
+
     public BoneModel(String name, String description, int id, Vector3 position, boolean isClickable) {
         this.name = name;
         this.description = description;
         this.resId = id;
         this.position = position;
         this.isClickable = isClickable;
+    }
+
+    public Vector3 getScale() {
+        return scale;
+    }
+
+    public void setScale(Vector3 scale) {
+        this.scale = scale;
     }
 
     public boolean isClickable() {

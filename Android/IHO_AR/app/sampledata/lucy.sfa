@@ -141,7 +141,7 @@
     file: 'sampledata/Lucy.obj',
     name: 'Lucy',
     recenter: 'root',
-    scale: 0.023068000000000002,
+    scale: 0.00768933333,
   },
   version: '0.54:2',
 }

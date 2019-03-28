@@ -102,7 +102,8 @@ public class ArActivity extends AppCompatActivity implements ArView {
         Node bone= new Node();
         bone.setParent(anchorNode);
         bone.setLocalPosition(boneModel.getPosition());
-
+        if(boneModel.getScale()!=null)
+            bone.setLocalScale(boneModel.getScale());
         bone.setRenderable(boneModel.getRenderable());
 
         if(boneModel.isClickable()) {
