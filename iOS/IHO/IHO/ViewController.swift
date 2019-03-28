@@ -47,6 +47,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         addLucy()
+        
+        //Adding Text pop up
+        let scaleGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCurrentNode(_:)))
+        self.view.addGestureRecognizer(scaleGesture)
+        
+        //3. Add A Tap Gesture Recogizer So We Can Place Our TextNode
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(placeOrAssignNode(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     
