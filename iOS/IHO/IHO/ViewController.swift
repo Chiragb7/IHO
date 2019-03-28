@@ -191,7 +191,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /// - Parameter position: SCNVector3
     func createTextFromPosition(_ position: SCNVector3){
         
-        let string = "Coverin text with a plane :)"
+        let string = "Evidence for bipedality: \nThe pelvis is wide and bowl-shaped,\n as it is in humans."
         let text = SCNText(string: string, extrusionDepth: 0.1)
         text.font = UIFont.systemFont(ofSize: 1)
         text.flatness = 0.005
@@ -203,6 +203,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let dy = min.y + 0.5 * (max.y - min.y)
         let dz = min.z + 0.5 * (max.z - min.z)
         textNode.pivot = SCNMatrix4MakeTranslation(dx, dy, dz)
+        let width = (max.x - min.x) * fontScale
+        let height = (max.y - min.y) * fontScale
+        let plane = SCNPlane(width: CGFloat(width), height: CGFloat(height))
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green.withAlphaComponent(0.5)
+        planeNode.geometry?.firstMaterial?.isDoubleSided = true
+        planeNode.position = textNode.position
+        textNode.eulerAngles = planeNode.eulerAngles
+        planeNode.addChildNode(textNode)
+        sceneView.scene.rootNode.addChildNode(planeNode);
+        currentNode = planeNode;
+        
     }
     
     
