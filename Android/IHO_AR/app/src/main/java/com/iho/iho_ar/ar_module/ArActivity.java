@@ -17,6 +17,7 @@ import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.collision.Sphere;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
@@ -98,9 +99,10 @@ public class ArActivity extends AppCompatActivity implements ArView {
     }
 
     private void createNode(BoneModel boneModel){
-
         Node bone= new Node();
+
         bone.setParent(anchorNode);
+        bone.setName(boneModel.getName());
         bone.setLocalPosition(boneModel.getPosition());
         if(boneModel.getScale()!=null)
             bone.setLocalScale(boneModel.getScale());
@@ -113,6 +115,10 @@ public class ArActivity extends AppCompatActivity implements ArView {
                     presenter.createPopup(boneModel.getName(), boneModel.getDescription());
                 }
             });
+        }
+        else {
+            // to avoid overlapping nodes not being able to handle onTap events properly
+            bone.setCollisionShape(new Sphere(0.001f, new Vector3(0,0,0)));
         }
     }
 
