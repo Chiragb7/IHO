@@ -25,5 +25,7 @@ public class IhoApplication extends Application {
                 R.raw.button2, new Vector3(-0.2f,0.4f,0), buttonScale));
         BoneModelList.getInstance().addToBoneModelList(new BoneModel("Arm","Right Arm",
                 R.raw.button2, new Vector3(-0.3f,1.3f,0), buttonScale));
+        BoneModelList.getInstance().addToBoneModelList(new BoneModel("Arm","Left Arm",
+                R.raw.button2, new Vector3(0.275f,1.3f,0), buttonScale));
     }
 }
