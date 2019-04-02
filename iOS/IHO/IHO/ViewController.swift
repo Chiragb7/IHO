@@ -12,7 +12,6 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
-
     @IBOutlet var sceneView: ARSCNView!
     //2. Create Our ARWorld Tracking Configuration
     let configuration = ARWorldTrackingConfiguration()
@@ -26,7 +25,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var currentNode: SCNNode?
     @IBOutlet var infoLabel: UILabel!
     
-    func addLucy(x: Float = 0, y: Float = -0.02, z: Float = -0.0671) {
+    func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
         guard let LucyScene = SCNScene(named: "art.scnassets/Lucy.scn") else { return }
         let LucyNode = SCNNode()
         let LucySceneChildNodes = LucyScene.rootNode.childNodes
@@ -40,6 +39,44 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(LucyNode)
     }
     
+    func addButtonRF(x: Float = -0.09, y: Float = -0.1, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNode = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        
+        for childNode in LucySceneChildNodes {
+            LucyNode.addChildNode(childNode)
+        }
+        LucyNode.position = SCNVector3(x, y, z)
+        LucyNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNode)
+    }
+    
+    func addButtonRL(x: Float = -0.07, y: Float = -0.25, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNode = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        
+        for childNode in LucySceneChildNodes {
+            LucyNode.addChildNode(childNode)
+        }
+        LucyNode.position = SCNVector3(x, y, z)
+        LucyNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNode)
+    }
+    
+    func addBone(x: Float = -0.09, y: Float = -0.1, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNode = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNode.addChildNode(childNode)
+        }
+        LucyNode.position = SCNVector3(x, y, z)
+        LucyNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNode)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the view's delegate
@@ -47,7 +84,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         addLucy()
-        
+        addButtonRF()
+        addButtonRL()
+        addBone()
+
         //Adding Text pop up
         let scaleGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCurrentNode(_:)))
         self.view.addGestureRecognizer(scaleGesture)
