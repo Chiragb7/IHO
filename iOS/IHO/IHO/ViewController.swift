@@ -93,8 +93,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.view.addGestureRecognizer(scaleGesture)
         
         //3. Add A Tap Gesture Recogizer So We Can Place Our TextNode
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(placeOrAssignNode(_:)))
-        self.view.addGestureRecognizer(tapGesture)
+       // let tapGesture = UITapGestureRecognizer(target: self, action: #selector(placeOrAssignNode(_:)))
+        //self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        
+        guard let touchLocation = touches.first?.location(in: sceneView),
+            let hitNode = sceneView?.hitTest(touchLocation, options: nil).first?.node,
+            let nodeName = hitNode.name
+            else{
+                return
+        }
+        print(nodeName)
+        
     }
     
     
@@ -195,7 +207,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /// Performs An ARHitTest Or SCNHitTest So We Can Place Or Assign Our TextNode
     ///
     /// - Parameter gesture: UITapGestureRecognizer
-    @objc func placeOrAssignNode(_ gesture: UITapGestureRecognizer){
+ /*   @objc func placeOrAssignNode(_ gesture: UITapGestureRecognizer){
         
         //1. Get The Current Location Of The Tap
         let currentTouchLocation = gesture.location(in: self.sceneView)
@@ -220,7 +232,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         currentNode?.removeFromParentNode()
         
-    }
+    } */
     
     //-------------------
     //MARK: Node Creation
@@ -229,9 +241,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /// Creates An SCNNode With An SCNTextGeometry
     ///
     /// - Parameter position: SCNVector3
-    func createTextFromPosition(_ position: SCNVector3){
+    func createTextFromPosition(_ position: SCNVector3, _ name: String){
         
-        let string = "Evidence for bipedality: \nThe pelvis is wide and bowl-shaped,\n as it is in humans."
+        let string = name
         let text = SCNText(string: string, extrusionDepth: 0.1)
         text.font = UIFont.systemFont(ofSize: 1)
         text.flatness = 0.005
