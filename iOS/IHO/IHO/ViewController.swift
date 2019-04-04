@@ -107,6 +107,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         print(nodeName)
         
+        if let hitTest = self.sceneView.hitTest(touchLocation, types: .featurePoint).first{
+            
+            //4. Get The World Transform
+            let hitTestPosition = hitTest.worldTransform.columns.3
+            
+            //5. Add The TestNode At The Desired Position
+            if nodeName == "Sphere"{
+                let string = "Sphere 1"
+                createTextFromPosition(SCNVector3(hitTestPosition.x, hitTestPosition.y, hitTestPosition.z), string)
+                return
+            }
+            else{
+                return
+            }
+        }
+        currentNode?.removeFromParentNode()
+        
     }
     
     
