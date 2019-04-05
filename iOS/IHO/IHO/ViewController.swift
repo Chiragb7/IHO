@@ -33,7 +33,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         for childNode in LucySceneChildNodes {
             LucyNode.addChildNode(childNode)
         }
-        
         LucyNode.position = SCNVector3(x, y, z)
         LucyNode.scale = SCNVector3(0.002, 0.002, 0.002)
         sceneView.scene.rootNode.addChildNode(LucyNode)
@@ -65,16 +64,101 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(LucyNode)
     }
     
-    func addBone(x: Float = -0.09, y: Float = -0.1, z: Float = 0) {
+    func addButtonPalm(x: Float = 0.099, y: Float = 0.08, z: Float = 0) {
+    guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+    let LucyNodeH = SCNNode()
+    let LucySceneChildNodes = LucyScene.rootNode.childNodes
+    for childNode in LucySceneChildNodes {
+    LucyNodeH.addChildNode(childNode)
+    }
+    LucyNodeH.position = SCNVector3(x, y, z)
+    LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+    sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonHand(x: Float = -0.06, y: Float = 0.08, z: Float = 0) {
         guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
-        let LucyNode = SCNNode()
+        let LucyNodeH = SCNNode()
         let LucySceneChildNodes = LucyScene.rootNode.childNodes
         for childNode in LucySceneChildNodes {
-            LucyNode.addChildNode(childNode)
+            LucyNodeH.addChildNode(childNode)
         }
-        LucyNode.position = SCNVector3(x, y, z)
-        LucyNode.scale = SCNVector3(0.01, 0.01, 0.01)
-        sceneView.scene.rootNode.addChildNode(LucyNode)
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonRBone(x: Float = -0.12, y: Float = -0.04, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonMidd(x: Float = -0.14, y: Float = -0.01, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonLLeft(x: Float = -0.2, y: Float = -0.18, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonLHand(x: Float = -0.2, y: Float = 0.085, z: Float = 0) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        LucyNodeH.name = "Sphere1"
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.01, 0.01, 0.01)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonLSkull(x: Float = -0.13, y: Float = 0.085, z: Float = 0.025) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.009, 0.009, 0.009)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
+    }
+    
+    func addButtonHSkull(x: Float = -0.13, y: Float = 0.137, z: Float = 0.025) {
+        guard let LucyScene = SCNScene(named: "art.scnassets/button/button.scn") else { return }
+        let LucyNodeH = SCNNode()
+        let LucySceneChildNodes = LucyScene.rootNode.childNodes
+        for childNode in LucySceneChildNodes {
+            LucyNodeH.addChildNode(childNode)
+        }
+        LucyNodeH.position = SCNVector3(x, y, z)
+        LucyNodeH.scale = SCNVector3(0.006, 0.006, 0.006)
+        sceneView.scene.rootNode.addChildNode(LucyNodeH)
     }
     
     override func viewDidLoad() {
@@ -86,7 +170,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         addLucy()
         addButtonRF()
         addButtonRL()
-        addBone()
+        addButtonPalm()
+        addButtonHand()
+        addButtonRBone()
+        addButtonMidd()
+        addButtonLLeft()
+        addButtonLHand()
+        addButtonLSkull()
+        addButtonHSkull()
 
         //Adding Text pop up
         let scaleGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCurrentNode(_:)))
@@ -125,8 +216,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         currentNode?.removeFromParentNode()
         
     }
-    
-    
     func updatePositionAndOrientationOf(_ node: SCNNode, withPosition position: SCNVector3, relativeTo referenceNode: SCNNode) {
         let referenceNodeTransform = matrix_float4x4(referenceNode.transform)
         
