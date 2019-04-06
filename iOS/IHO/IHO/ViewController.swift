@@ -229,7 +229,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         else if nodeName == "spine"{
             msg = "vidence for bipedality: The lumbar portion of the spine curves inward as it does in humans to better support the weight of the upper body."
         }
-        
+        else if nodeName == "leftHand"{
+            msg = "Lucy was discovered in exposed sediments in Hadar, Ethiopia. Additional fossils belonging to her species have also been found in othe sides in Ethiopia, Kenya and Tanzania."
+        }
+        else if nodeName == "lowerJaw"{
+            msg = "The Australopithecus has a U shaped jaw in contrast with modern humans whose jaw is parabolic. The jaw muscles are also much larger in comparison to humans."
+        }
+        else if nodeName == "topSkull"{
+            msg = "Estimates of brain size range from 380 to 550 cubic centimeters(cc). This is similar in size to that of chimpanzees whse average 395cc and much smaller than modern humans whose average is 1475cc."
+        }
+        else if nodeName == "skull"{
+            msg = "Australopithecus afarensis had a strongly protruding face similar to that of chimpanzees while humans are categorized by short faces"
+        }
         //Adding alert to display the text.
         let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
