@@ -4,4 +4,10 @@
     <string name ="left_foot">Evidence for bipedality: The long bones of the foot in Australopithecus indicate they had a human-like longitudinal arch.</string>
     <string name="right_knee">Evidence for bipedality: The knee is angled inward like in humans, rather than the more vertical position found in chimpanzees.This difference in orientation moves the support the lower legs offer directly under the body\'s center of gravity.</string>
     <string name="left_thigh">Human walk on two legs(bipedally) and have long legs and shor arms. Chimpanzees walk on all fours and have longer arms than legs. Australopithecus are thought to have walked bipedally and had arms that are relatively shorter than chimpanzees but are relatively longer than humans </string>
+    <string name="hip_bone">Evidence for bipedality: The pelvis is wide and bowl shaped, as it is in humans.</string>
+    <string name="spine">Evidence for bipedality: The lumber portion of the spine curves inwards as it does in hummans to better support the weight of the upper body.</string>
+    <string name="left_arm">Australopithecus afarensis lived in East Africa 3.9-2.9 million years ago in mosaic habitats of open woodland, grassland and shrubland.</string>
+    <string name="right_arm"> Lucy was discovered in exposed sediment in Hadar, Ethiopia. Additional fossils belonging to her species have aldo been found in other sites in Ethiopia, Kenya, and Tanzania.</string>
+    <string name="jaw">The Australopithecus jaw has a U-shaped in contrast with the modern humans whose jaw is parabolic. The jaw muscles are also much larger in comparison to humans.</string>
+    <string name="head">Estimates of brain size range from 380 to 550 cubic centimeters(cc). This is similar in size to that of chimpanzees who awerage 395 cc and much smaller than modern humans who average 1475cc.</string>
 </resources>
