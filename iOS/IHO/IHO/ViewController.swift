@@ -207,6 +207,29 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         print(nodeName)
         var msg = ""
+        
+        if nodeName == "rightFeet"{
+            msg = "Evidence for bipedality: The long bones of the foot in Australopithecus indicate that they had a human like longitudinal arc."
+        }
+        else if nodeName == "rightLeg"{
+            msg = "Humans walk on two legs (bipedally) and have long legs and short arms. Chimpanzees walk on all fours and have longer arms than legs. Australopithecus are thought to have walked bipedally and had arms that are relatively shorter than chimpanzees but are relatively longer than humans."
+        }
+        else if nodeName == "leftFingers"{
+            msg = "There is a controversial evidence for Australopithecus stone tool use. The oldest stone tool has been dated to 2.6 million years ago. It is possible that they were either using naturally broken stone as a tool or purposefully creating simple stone tools."
+        }
+        else if nodeName == "leftLegBone"{
+            msg = "Evidence for bipedality: The knee is angled inward like in humans, rather than the more vertical position found in chimpanzees. This difference in orientation moves the support the lower legs offer directly under the body's center of gravity"
+        }
+        else if nodeName == "rightHip"{
+            msg = "Evidence for bipedality: The pelvis is wide and bowl-shaped, as it is in humans."
+        }
+        else if nodeName == "rightHand"{
+            msg = "Australopithecus afarensis lived in east Africa 3.9-2.9 million years ago in mosaic habitats of open woodland, grassland and shrubland"
+        }
+        else if nodeName == "spine"{
+            msg = "vidence for bipedality: The lumbar portion of the spine curves inward as it does in humans to better support the weight of the upper body."
+        }
+        
         //Adding alert to display the text.
         let alert = UIAlertController(title: "", message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
