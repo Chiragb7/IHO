@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">IHO_AR</string>
+    <string name="sceneform_error_android_ver">Sceneform requires Android N or later</string>
+    <string name="sceneform_error_opengl_ver">Sceneform requires OpenGL ES 3.0 or later</string>
     <string name="right_hand">There is controversial evidence for Australopithecus stone tool use.The oldest stone tool has been dated to 2.6 million years ago.It is possible that they were either using naturally-broken stone as a tool or purposefully creating simple stone tools.</string>
-    <string name ="left_foot">Evidence for bipedality: The long bones of the foot in Australopithecus indicate they had a human-like longitudinal arch.</string>
+    <string name="left_foot">Evidence for bipedality: The long bones of the foot in Australopithecus indicate they had a human-like longitudinal arch.</string>
     <string name="right_knee">Evidence for bipedality: The knee is angled inward like in humans, rather than the more vertical position found in chimpanzees.This difference in orientation moves the support the lower legs offer directly under the body\'s center of gravity.</string>
     <string name="left_thigh">Human walk on two legs(bipedally) and have long legs and shor arms. Chimpanzees walk on all fours and have longer arms than legs. Australopithecus are thought to have walked bipedally and had arms that are relatively shorter than chimpanzees but are relatively longer than humans </string>
     <string name="hip_bone">Evidence for bipedality: The pelvis is wide and bowl shaped, as it is in humans.</string>
