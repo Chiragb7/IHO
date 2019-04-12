@@ -10,7 +10,7 @@ import com.iho.iho_ar.models.BoneModelList;
 public class IhoApplication extends Application {
     @Override
     public void onCreate() {
-        super.onCreate();
+        super.onCreate(); 
         initBoneModelList();
     }
 
