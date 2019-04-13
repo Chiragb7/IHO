@@ -12,9 +12,22 @@ public class popUpMessages {
     
     //Creating an empty dictionary
     var popUpDict: [String: String] = [:]
-    
+    var popUpTitle: [String: String] = [:]
     //adding key-value pairs into the dictionary with the bone name as the key and the popUp message as the value
     init() {
+        
+        
+        popUpTitle.updateValue("rightFeet", forKey: "rightFeet")
+        popUpTitle.updateValue("rightLeg", forKey: "rightLeg")
+        popUpTitle.updateValue("leftFingers", forKey: "leftFingers")
+        popUpTitle.updateValue("leftLegBone", forKey: "leftLegBone")
+        popUpTitle.updateValue("rightHip", forKey: "rightHip")
+        popUpTitle.updateValue("rightHand", forKey: "rightHand")
+        popUpTitle.updateValue("spine", forKey: "spine")
+        popUpTitle.updateValue("leftHand", forKey: "leftHand")
+        popUpTitle.updateValue("lowerJaw", forKey: "lowerJaw")
+        popUpTitle.updateValue("topSkull", forKey: "topSkull")
+        popUpTitle.updateValue("skull", forKey: "skull")
         
         popUpDict.updateValue("Evidence for bipedality: The long bones of the foot in Australopithecus indicate that they had a human like longitudinal arc.", forKey: "rightFeet")
         popUpDict.updateValue("Humans walk on two legs (bipedally) and have long legs and short arms. Chimpanzees walk on all fours and have longer arms than legs. Australopithecus are thought to have walked bipedally and had arms that are relatively shorter than chimpanzees but are relatively longer than humans.", forKey: "rightLeg")

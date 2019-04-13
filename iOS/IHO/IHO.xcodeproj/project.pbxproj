@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		19667404225E8AFB004C08EA /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 19667403225E8AFB004C08EA /* ic_launcher.png */; };
-		19667406225E8B0B004C08EA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19667405225E8B0B004C08EA /* Info.plist */; };
 		4581279B2245AB3800DDBFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279A2245AB3800DDBFF8 /* AppDelegate.swift */; };
 		4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4581279C2245AB3800DDBFF8 /* art.scnassets */; };
 		4581279F2245AB3800DDBFF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279E2245AB3800DDBFF8 /* ViewController.swift */; };
@@ -52,7 +51,7 @@
 		458127B32245AB3900DDBFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458127B82245AB3900DDBFF8 /* IHOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IHOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		458127BC2245AB3900DDBFF8 /* IHOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHOUITests.swift; sourceTree = "<group>"; };
-		458127BE2245AB3900DDBFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458127BE2245AB3900DDBFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = IHOUITests/Info.plist; sourceTree = SOURCE_ROOT; };
 		45CA1254225D8A0E0082E45C /* popUpMesages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpMesages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +103,7 @@
 		458127992245AB3800DDBFF8 /* IHO */ = {
 			isa = PBXGroup;
 			children = (
+				458127BE2245AB3900DDBFF8 /* Info.plist */,
 				4581279A2245AB3800DDBFF8 /* AppDelegate.swift */,
 				4581279C2245AB3800DDBFF8 /* art.scnassets */,
 				4581279E2245AB3800DDBFF8 /* ViewController.swift */,
@@ -130,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				458127BC2245AB3900DDBFF8 /* IHOUITests.swift */,
-				458127BE2245AB3900DDBFF8 /* Info.plist */,
 			);
 			path = IHOUITests;
 			sourceTree = "<group>";
@@ -241,7 +240,6 @@
 			files = (
 				4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */,
 				458127A72245AB3900DDBFF8 /* LaunchScreen.storyboard in Resources */,
-				19667406225E8B0B004C08EA /* Info.plist in Resources */,
 				458127A42245AB3900DDBFF8 /* Assets.xcassets in Resources */,
 				458127A22245AB3800DDBFF8 /* Main.storyboard in Resources */,
 				19667404225E8AFB004C08EA /* ic_launcher.png in Resources */,

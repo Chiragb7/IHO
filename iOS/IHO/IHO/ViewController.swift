@@ -83,7 +83,7 @@ class ViewController: UIViewController, ARSCNViewDelegate{
 
         // Adding alert to display the popUpText
         //The respective text is obtained by calling the dictionary "popUpDict" of class "popUPMessages" using the object created
-        let alert = UIAlertController(title: "", message: popUpMessage.popUpDict[nodeName]!, preferredStyle: .alert)
+        let alert = UIAlertController(title: popUpMessage.popUpTitle[nodeName]!, message: popUpMessage.popUpDict[nodeName]!, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
         
