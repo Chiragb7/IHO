@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,6 +37,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Lucy View Controller-->
+        <scene sceneID="ys6-8y-wC0">
+            <objects>
+                <viewController id="pp5-1i-1ll" customClass="LucyViewController" customModule="IHO_ASU" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JlD-1u-4wY"/>
+                        <viewControllerLayoutGuide type="bottom" id="kor-hX-YZ3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kcu-Q6-8hd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="pmM-62-FTa">
+                                <rect key="frame" x="20" y="-21" width="335" height="688"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="620" id="gfC-9d-hKz"/>
+                                    <constraint firstAttribute="width" constant="335" id="ksL-KU-SQc"/>
+                                </constraints>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pmM-62-FTa" secondAttribute="trailing" constant="20" id="2Y2-Pb-Mf7"/>
+                            <constraint firstItem="pmM-62-FTa" firstAttribute="leading" secondItem="Kcu-Q6-8hd" secondAttribute="leading" constant="20" id="QJq-RE-whm"/>
+                            <constraint firstItem="kor-hX-YZ3" firstAttribute="top" secondItem="pmM-62-FTa" secondAttribute="bottom" id="XsL-tV-wLK"/>
+                            <constraint firstItem="pmM-62-FTa" firstAttribute="top" secondItem="JlD-1u-4wY" secondAttribute="bottom" constant="-41" id="a0Y-Ow-dgC"/>
+                            <constraint firstItem="kor-hX-YZ3" firstAttribute="top" secondItem="pmM-62-FTa" secondAttribute="bottom" id="u4H-Ep-x0E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UM2-Mu-yWr"/>
+                    </view>
+                    <connections>
+                        <outlet property="lucyLogo" destination="pmM-62-FTa" id="8gb-YE-6me"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZV-6c-aQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4864.8000000000002" y="-1905.697151424288"/>
         </scene>
     </scenes>
 </document>

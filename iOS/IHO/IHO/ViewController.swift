@@ -22,7 +22,9 @@ class ViewController: UIViewController, ARSCNViewDelegate{
     
     @IBOutlet var infoLabel: UILabel!
     
-    func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
+       @objc func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
+
+        
         guard let LucyScene = SCNScene(named: "art.scnassets/Lucy.scn") else { return }
         let LucyNode = SCNNode()
         let LucySceneChildNodes = LucyScene.rootNode.childNodes
@@ -33,6 +35,17 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         LucyNode.position = SCNVector3(x, y, z)
         LucyNode.scale = SCNVector3(0.002, 0.002, 0.002)
         sceneView.scene.rootNode.addChildNode(LucyNode)
+    }
+    
+    func configureLighting(){
+        
+    sceneView.autoenablesDefaultLighting = true
+    sceneView.automaticallyUpdatesLighting = true
+    
+    }
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addLucy(x:y:z:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func addButton(boneName: String, x: Float, y: Float, z: Float, sx: Float, sy: Float, sz: Float) {
@@ -55,18 +68,21 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         sceneView.delegate = self
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        addTapGestureToSceneView()
+        configureLighting()
         addLucy()
-        addButton(boneName: "rightLeg", x: -0.09, y: -0.1, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "rightFeet", x: -0.07, y: -0.25, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "leftFingers", x: 0.099, y: 0.08, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "leftHand", x: -0.06, y: 0.08, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "rightHip", x: -0.12, y: -0.04, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "spine", x: -0.14, y: -0.01, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "leftLegBone", x: -0.2, y: -0.18, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "rightHand", x: -0.2, y: 0.085, z: 0, sx: 0.01, sy: 0.01, sz: 0.01)
-        addButton(boneName: "lowerJaw", x: -0.13, y: 0.085, z: 0.025, sx: 0.009, sy: 0.009, sz: 0.009)
-        addButton(boneName: "skull", x: -0.13, y: 0.137, z: 0.025, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "topSkull", x: -0.13, y: 0.145, z: 0.025, sx: 0.006, sy: 0.006, sz: 0.006)
+        
+        addButton(boneName: "rightLeg", x: -0.1, y: -0.1, z: -0.001, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "rightFeet", x: -0.07, y: -0.26, z: 0.02, sx: 0.006, sy: 0.01, sz: 0.006)
+        addButton(boneName: "rightFingers", x: 0.095, y: 0.08, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "rightHand", x: -0.06, y: 0.08, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "rightHip", x: -0.11, y: -0.04, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "spine", x: -0.146, y: -0.01, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "leftLegBone", x: -0.21, y: -0.18, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "leftHand", x: -0.2, y: 0.085, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Jaw", x: -0.15, y: 0.085, z: 0.02, sx: 0.006, sy: 0.006, sz: 0.009)
+        addButton(boneName: "Face", x: -0.16, y: 0.11, z: 0.02, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Brain", x: -0.15, y: 0.142, z: 0.01, sx: 0.006, sy: 0.006, sz: 0.006)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
@@ -77,7 +93,6 @@ class ViewController: UIViewController, ARSCNViewDelegate{
             else{
                 return
         }
-
         // Create an object for the class "popUpMessages" swift class
         let popUpMessage = popUpMessages()
 
@@ -105,7 +120,6 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         // Pause the view's session
         sceneView.session.pause()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if #available(iOS 11, *){
