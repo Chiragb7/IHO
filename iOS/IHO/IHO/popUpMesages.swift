@@ -34,7 +34,7 @@ public class popUpMessages {
         popUpDict.updateValue("There is a controversial evidence for Australopithecus stone tool use. The oldest stone tool has been dated to 2.6 million years ago. It is possible that they were either using naturally broken stone as a tool or purposefully creating simple stone tools.", forKey: "rightFingers")
         popUpDict.updateValue("Evidence for bipedality: The knee is angled inward like in humans, rather than the more vertical position found in chimpanzees. This difference in orientation moves the support the lower legs offer directly under the body's center of gravity", forKey: "leftLegBone")
         popUpDict.updateValue("Evidence for bipedality: The pelvis is wide and bowl-shaped, as it is in humans.", forKey: "rightHip")
-        popUpDict.updateValue("Australopithecus afarensis lived in east Africa 3.9-2.9 million years ago in mosaic habitats of open woodland, grassland and shrubland", forKey: "lefHand")
+        popUpDict.updateValue("Australopithecus afarensis lived in east Africa 3.9-2.9 million years ago in mosaic habitats of open woodland, grassland and shrubland", forKey: "leftHand")
         popUpDict.updateValue("Evidence for bipedality: The lumbar portion of the spine curves inward as it does in humans to better support the weight of the upper body.", forKey: "spine")
         popUpDict.updateValue("Lucy was discovered in exposed sediments in Hadar, Ethiopia. Additional fossils belonging to her species have also been found in othe sides in Ethiopia, Kenya and Tanzania.", forKey: "rightHand")
         popUpDict.updateValue("The Australopithecus has a U shaped jaw in contrast with modern humans whose jaw is parabolic. The jaw muscles are also much larger in comparison to humans.", forKey: "Jaw")
