@@ -10,24 +10,29 @@ import Foundation
 
 public class popUpMessages {
     
-    //Creating an empty dictionary
+    //Creating an empty dictionary for the popup messages
     var popUpDict: [String: String] = [:]
+    
+    //creating an empty dictionary for the titles corresponding to the popup titles
     var popUpTitle: [String: String] = [:]
-    //adding key-value pairs into the dictionary with the bone name as the key and the popUp message as the value
+    
     init() {
         
+        //adding key-value pairs into the dictionary with the bone name as the key and the popUp title as the value
         
-        popUpTitle.updateValue("rightFeet", forKey: "rightFeet")
-        popUpTitle.updateValue("rightLeg", forKey: "rightLeg")
-        popUpTitle.updateValue("rightFingers", forKey: "rightFingers")
-        popUpTitle.updateValue("leftLegBone", forKey: "leftLegBone")
-        popUpTitle.updateValue("rightHip", forKey: "rightHip")
-        popUpTitle.updateValue("leftHand", forKey: "leftHand")
-        popUpTitle.updateValue("spine", forKey: "spine")
-        popUpTitle.updateValue("rightHand", forKey: "rightHand")
+        popUpTitle.updateValue("Right Feet", forKey: "rightFeet")
+        popUpTitle.updateValue("Right Leg", forKey: "rightLeg")
+        popUpTitle.updateValue("Right Fingers", forKey: "rightFingers")
+        popUpTitle.updateValue("Left Leg Bone", forKey: "leftLegBone")
+        popUpTitle.updateValue("Right Hip", forKey: "rightHip")
+        popUpTitle.updateValue("Left Hand", forKey: "leftHand")
+        popUpTitle.updateValue("Spine", forKey: "spine")
+        popUpTitle.updateValue("Right Hand", forKey: "rightHand")
         popUpTitle.updateValue("Jaw", forKey: "Jaw")
         popUpTitle.updateValue("Brain", forKey: "Brain")
         popUpTitle.updateValue("Face", forKey: "Face")
+        
+        //adding key-value pairs into the dictionary with the bone name as the key and the popUp message as the value
         
         popUpDict.updateValue("Evidence for bipedality: The long bones of the foot in Australopithecus indicate that they had a human like longitudinal arc.", forKey: "rightFeet")
         popUpDict.updateValue("Humans walk on two legs (bipedally) and have long legs and short arms. Chimpanzees walk on all fours and have longer arms than legs. Australopithecus are thought to have walked bipedally and had arms that are relatively shorter than chimpanzees but are relatively longer than humans.", forKey: "rightLeg")

@@ -43,6 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate{
     sceneView.automaticallyUpdatesLighting = true
     
     }
+    
     func addTapGestureToSceneView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addLucy(x:y:z:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
@@ -93,14 +94,44 @@ class ViewController: UIViewController, ARSCNViewDelegate{
             else{
                 return
         }
+        
         // Create an object for the class "popUpMessages" swift class
         let popUpMessage = popUpMessages()
+        
+        //Creating font size and Color of the text of the popUp message
+        //The respective text is obtained by calling the dictionary "popUpDict" of class "popUpMessages" using the object created
+        
+        let attributedString = NSAttributedString(string: popUpMessage.popUpDict[nodeName]!, attributes: [
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18),
+            NSAttributedString.Key.foregroundColor : UIColor.white
+            ])
+        
+        //Creating font size and Color of the text of the popUp title
+        //The respective text is obtained by calling the dictionary "popUpTitle" of class "popUpMessages" using the object created
+        let attributedTitle = NSAttributedString(string: popUpMessage.popUpTitle[nodeName]!, attributes: [
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24),
+            NSAttributedString.Key.foregroundColor : UIColor.white,
+            //NSAttributedString.Key.underlineStyle : UIStyle
+            ])
 
         // Adding alert to display the popUpText
-        //The respective text is obtained by calling the dictionary "popUpDict" of class "popUPMessages" using the object created
-        let alert = UIAlertController(title: popUpMessage.popUpTitle[nodeName]!, message: popUpMessage.popUpDict[nodeName]!, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        
+        //Setting the different attributed styles for the Message and the Title of PopUp
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
+        alert.setValue(attributedString, forKey: "attributedMessage")
+        
+        // Display the Alert and close accordingly
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+        
+        //Change the default background color of the pop up to Black
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 0.5
+        subview.backgroundColor = UIColor.black
+        
+        //Change the color of the button "Close" to white
+        alert.view.tintColor = UIColor.white
         
     }
     
