@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!checkIsSupportedDeviceOrFinish(this)){
+//        if(!checkIsSupportedDeviceOrFinish(this)){
+        if(true){
             Fragment fragment = new Lucy2DFrag();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.addToBackStack(null).replace(R.id.frame, fragment).commit();
@@ -35,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount()>1){
+            getFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
     }
 
     public static boolean checkIsSupportedDeviceOrFinish(final Context context) {
