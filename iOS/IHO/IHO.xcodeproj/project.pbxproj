@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1958A19B2263B6FF004F691F /* 2DLucyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1958A19A2263B6FF004F691F /* 2DLucyViewController.swift */; };
+		1958A19B2263B6FF004F691F /* LucyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1958A19A2263B6FF004F691F /* LucyViewController.swift */; };
 		1958A19D2263B7A0004F691F /* lucy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1958A19C2263B7A0004F691F /* lucy.html */; };
 		1958A19F2263B7BE004F691F /* lucy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958A19E2263B7BE004F691F /* lucy.png */; };
 		1958A1A12263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai in Resources */ = {isa = PBXBuildFile; fileRef = 1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1958A19A2263B6FF004F691F /* 2DLucyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 2DLucyViewController.swift; sourceTree = "<group>"; };
+		1958A19A2263B6FF004F691F /* LucyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyViewController.swift; sourceTree = "<group>"; };
 		1958A19C2263B7A0004F691F /* lucy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lucy.html; sourceTree = "<group>"; };
 		1958A19E2263B7BE004F691F /* lucy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucy.png; sourceTree = "<group>"; };
 		1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lucy_FullSkeleton_uncolored.ai; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				458127A52245AB3900DDBFF8 /* LaunchScreen.storyboard */,
 				19667403225E8AFB004C08EA /* ic_launcher.png */,
 				45CA1254225D8A0E0082E45C /* popUpMesages.swift */,
-				1958A19A2263B6FF004F691F /* 2DLucyViewController.swift */,
+				1958A19A2263B6FF004F691F /* LucyViewController.swift */,
 			);
 			path = IHO;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 				4581279F2245AB3800DDBFF8 /* ViewController.swift in Sources */,
 				45CA1255225D8A0E0082E45C /* popUpMesages.swift in Sources */,
 				4581279B2245AB3800DDBFF8 /* AppDelegate.swift in Sources */,
-				1958A19B2263B6FF004F691F /* 2DLucyViewController.swift in Sources */,
+				1958A19B2263B6FF004F691F /* LucyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,14 +468,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C36GJA9N9V;
+				DEVELOPMENT_TEAM = PZB7UGJXSL;
 				INFOPLIST_FILE = IHO/Info.plist;
 				"INFOPLIST_FILE[sdk=*]" = IHO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vineeshaIHO;
+				PRODUCT_BUNDLE_IDENTIFIER = "First-App.IHO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -489,13 +489,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C36GJA9N9V;
+				DEVELOPMENT_TEAM = PZB7UGJXSL;
 				INFOPLIST_FILE = IHO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vineeshaIHO;
+				PRODUCT_BUNDLE_IDENTIFIER = "First-App.IHO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
