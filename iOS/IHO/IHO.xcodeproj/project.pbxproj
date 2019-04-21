@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1958A19B2263B6FF004F691F /* LucyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1958A19A2263B6FF004F691F /* LucyViewController.swift */; };
 		1958A19D2263B7A0004F691F /* lucy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1958A19C2263B7A0004F691F /* lucy.html */; };
 		1958A19F2263B7BE004F691F /* lucy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958A19E2263B7BE004F691F /* lucy.png */; };
 		1958A1A12263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai in Resources */ = {isa = PBXBuildFile; fileRef = 1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */; };
-		1958A1A32263B7DB004F691F /* lucy_chin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958A1A22263B7DB004F691F /* lucy_chin.png */; };
 		1958A1A52263B7F0004F691F /* lucy_skull.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958A1A42263B7F0004F691F /* lucy_skull.png */; };
 		19667404225E8AFB004C08EA /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 19667403225E8AFB004C08EA /* ic_launcher.png */; };
+		1966A08E226C0C8200A5F074 /* LucyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1966A08D226C0C8200A5F074 /* LucyViewController.swift */; };
 		4581279B2245AB3800DDBFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279A2245AB3800DDBFF8 /* AppDelegate.swift */; };
 		4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4581279C2245AB3800DDBFF8 /* art.scnassets */; };
 		4581279F2245AB3800DDBFF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279E2245AB3800DDBFF8 /* ViewController.swift */; };
@@ -43,13 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1958A19A2263B6FF004F691F /* LucyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyViewController.swift; sourceTree = "<group>"; };
 		1958A19C2263B7A0004F691F /* lucy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lucy.html; sourceTree = "<group>"; };
 		1958A19E2263B7BE004F691F /* lucy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucy.png; sourceTree = "<group>"; };
 		1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Lucy_FullSkeleton_uncolored.ai; sourceTree = "<group>"; };
-		1958A1A22263B7DB004F691F /* lucy_chin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucy_chin.png; sourceTree = "<group>"; };
 		1958A1A42263B7F0004F691F /* lucy_skull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucy_skull.png; sourceTree = "<group>"; };
 		19667403225E8AFB004C08EA /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
+		1966A08D226C0C8200A5F074 /* LucyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyViewController.swift; sourceTree = "<group>"; };
 		458127972245AB3800DDBFF8 /* IHO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IHO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4581279A2245AB3800DDBFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4581279C2245AB3800DDBFF8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				1958A1A42263B7F0004F691F /* lucy_skull.png */,
-				1958A1A22263B7DB004F691F /* lucy_chin.png */,
 				1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */,
 				1958A19E2263B7BE004F691F /* lucy.png */,
 				1958A19C2263B7A0004F691F /* lucy.html */,
@@ -128,7 +125,7 @@
 				458127A52245AB3900DDBFF8 /* LaunchScreen.storyboard */,
 				19667403225E8AFB004C08EA /* ic_launcher.png */,
 				45CA1254225D8A0E0082E45C /* popUpMesages.swift */,
-				1958A19A2263B6FF004F691F /* LucyViewController.swift */,
+				1966A08D226C0C8200A5F074 /* LucyViewController.swift */,
 			);
 			path = IHO;
 			sourceTree = "<group>";
@@ -255,7 +252,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */,
-				1958A1A32263B7DB004F691F /* lucy_chin.png in Resources */,
 				1958A19D2263B7A0004F691F /* lucy.html in Resources */,
 				458127A72245AB3900DDBFF8 /* LaunchScreen.storyboard in Resources */,
 				458127A42245AB3900DDBFF8 /* Assets.xcassets in Resources */,
@@ -291,7 +287,7 @@
 				4581279F2245AB3800DDBFF8 /* ViewController.swift in Sources */,
 				45CA1255225D8A0E0082E45C /* popUpMesages.swift in Sources */,
 				4581279B2245AB3800DDBFF8 /* AppDelegate.swift in Sources */,
-				1958A19B2263B6FF004F691F /* LucyViewController.swift in Sources */,
+				1966A08E226C0C8200A5F074 /* LucyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,68 +1,45 @@
 //
-//  2DLucyViewController.swift
+//  LucyViewController.swift
 //  IHO
 //
-//  Created by Desai, Dhruti on 4/14/19.
+//  Created by Desai, Dhruti on 4/20/19.
 //  Copyright © 2019 vkasam. All rights reserved.
 //
 
 import UIKit
-import Foundation
 
-class _DLucyViewController: UIViewController {
+class LucyViewController: UIViewController {
+    @IBOutlet weak var LucyWeb: UIWebView!
     var htmlpath: String? = nil
-    
-    @IBOutlet weak var lucyLogo: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Lucy LOGO
+
         htmlpath = Bundle.main.path(forResource: "lucy", ofType: "html")
-        
-        //Since the variables are never mutated, we use "let" instead of "var"
         let html = try? String(contentsOfFile: htmlpath!, encoding: String.Encoding.utf8)
         let baseURL = URL(fileURLWithPath: "\(Bundle.main.bundlePath)")
-        self.lucyLogo.scalesPageToFit = false
-        self.lucyLogo.loadHTMLString(html!, baseURL: baseURL)
-        self.lucyLogo.scrollView.isScrollEnabled = true
+        self.LucyWeb.scalesPageToFit = false
+        self.LucyWeb.loadHTMLString(html!, baseURL: baseURL)
+        self.LucyWeb.scrollView.isScrollEnabled = true
         
-        
-        //toolbar
         let label = UILabel(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(350), height: CGFloat(21)))
         label.text = "ASU IHO 2019"
         label.center = CGPoint(x: view.frame.midX, y: view.frame.height)
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
-        let toolbarTitle = UIBarButtonItem(customView: label)
-        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        self.toolbarItems = [flexible,toolbarTitle]
+
+        // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBar.isHidden=false;
-        self.navigationController?.setToolbarHidden(false, animated: false)
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated: false)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    
-    
+    */
+
 }
-
-
-
-
-

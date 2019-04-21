@@ -12,17 +12,14 @@ import ARKit
 
 
 class ViewController: UIViewController, ARSCNViewDelegate{
-    
+   
     @IBOutlet var sceneView: ARSCNView!
     //Create Our ARWorld Tracking Configuration
     let configuration = ARWorldTrackingConfiguration()
-    
     //Create Our Session
     let augmentedRealitySession = ARSession()
-    
     @IBOutlet var infoLabel: UILabel!
-    @IBOutlet weak var lucyLogo: UIWebView!
-    var htmlpath: String? = nil
+  
        @objc func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
 
         
@@ -73,16 +70,6 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         addTapGestureToSceneView()
         configureLighting()
         addLucy()
-        
-        htmlpath = Bundle.main.path(forResource: "lucy", ofType: "html")
-        var html = try? String(contentsOfFile: htmlpath!, encoding: String.Encoding.utf8)
-        var baseURL = URL(fileURLWithPath: "\(Bundle.main.bundlePath)")
-        self.lucyLogo.scalesPageToFit = false
-        self.lucyLogo.loadHTMLString(html!, baseURL: baseURL)
-        self.lucyLogo.scrollView.isScrollEnabled = true
-        
-        
-        
         addButton(boneName: "rightLeg", x: -0.1, y: -0.1, z: -0.001, sx: 0.006, sy: 0.006, sz: 0.006)
         addButton(boneName: "rightFeet", x: -0.07, y: -0.26, z: 0.02, sx: 0.006, sy: 0.01, sz: 0.006)
         addButton(boneName: "rightFingers", x: 0.095, y: 0.08, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
@@ -97,7 +84,6 @@ class ViewController: UIViewController, ARSCNViewDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        
         guard let touchLocation = touches.first?.location(in: sceneView),
             let hitNode = sceneView?.hitTest(touchLocation, options: nil).first?.node,
             let nodeName = hitNode.name
@@ -161,26 +147,19 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         // Pause the view's session
         sceneView.session.pause()
     }
-   
+    let LucyView = LucyViewController()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if #available(iOS 11, *){
-        
-            htmlpath = Bundle.main.path(forResource: "lucy", ofType: "html")
-            var html = try? String(contentsOfFile: htmlpath!, encoding: String.Encoding.utf8)
-            var baseURL = URL(fileURLWithPath: "\(Bundle.main.bundlePath)")
-            self.lucyLogo.scalesPageToFit = false
-            self.lucyLogo.loadHTMLString(html!, baseURL: baseURL)
-            self.lucyLogo.scrollView.isScrollEnabled = true
-            
-           // open 2D view
+                    //viewdidappear
         }
         else
         {
             let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(alertController, animated: true, completion: nil)
+           
+            LucyView.viewDidLoad()
         }
     }
     
