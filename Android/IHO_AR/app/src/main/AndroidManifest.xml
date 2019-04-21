@@ -27,8 +27,7 @@
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity android:name=".lucy_2d_view.MainActivity"
-            android:label="@string/lucy">
+        <activity android:name=".lucy_2d_view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

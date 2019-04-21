@@ -28,7 +28,8 @@ public class ArActivity extends AppCompatActivity implements ArView {
     private static final String TAG = ArActivity.class.getSimpleName();
     private ArFragment arFragment;
     private ArPresenter presenter;
-    AnchorNode anchorNode;
+    private boolean modelPlaced = false;
+    private AnchorNode anchorNode;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -45,16 +46,19 @@ public class ArActivity extends AppCompatActivity implements ArView {
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (!presenter.renderablesReady()) {
-                        Toast.makeText(this,"Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    // Create the Anchor.
-                    Anchor anchor = hitResult.createAnchor();
-                    anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+                    if(!modelPlaced) {
+                        modelPlaced = true;
+                        if (!presenter.renderablesReady()) {
+                            Toast.makeText(this, "Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        // Create the Anchor.
+                        Anchor anchor = hitResult.createAnchor();
+                        anchorNode = new AnchorNode(anchor);
+                        anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    presenter.createNodes();
+                        presenter.createNodes();
+                    }
                 });
     }
 
