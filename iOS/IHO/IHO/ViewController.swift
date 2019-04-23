@@ -9,9 +9,10 @@
 import UIKit
 import SceneKit
 import ARKit
+import WebKit
 
 
-class ViewController: UIViewController, ARSCNViewDelegate{
+class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavigationDelegate{
    
     @IBOutlet var sceneView: ARSCNView!
     //Create Our ARWorld Tracking Configuration
@@ -19,6 +20,7 @@ class ViewController: UIViewController, ARSCNViewDelegate{
     //Create Our Session
     let augmentedRealitySession = ARSession()
     @IBOutlet var infoLabel: UILabel!
+    @IBOutlet weak var twoDLucyView: WKWebView!
   
        @objc func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
 
@@ -63,6 +65,18 @@ class ViewController: UIViewController, ARSCNViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        twoDLucyView.uiDelegate = self
+//        twoDLucyView.navigationDelegate = self
+//
+//        if #available(iOS 11, *) {
+//            let url = Bundle.main.url(forResource: "lucy", withExtension: "html", subdirectory: "IHO")!
+//            twoDLucyView.loadFileURL(url, allowingReadAccessTo: url)
+//            let request = URLRequest(url: url)
+//            twoDLucyView.load(request)
+//        }
+        
+        
         // Set the view's delegate
         sceneView.delegate = self
         // Show statistics such as fps and timing information
@@ -147,10 +161,13 @@ class ViewController: UIViewController, ARSCNViewDelegate{
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    
     let LucyView = LucyViewController()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if #available(iOS 11, *){
+            //LucyView.viewDidLoad()
                     //viewdidappear
         }
         else
@@ -158,7 +175,7 @@ class ViewController: UIViewController, ARSCNViewDelegate{
             let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(alertController, animated: true, completion: nil)
-           
+
             LucyView.viewDidLoad()
         }
     }
