@@ -48,6 +48,7 @@
 		1958A1A42263B7F0004F691F /* lucy_skull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucy_skull.png; sourceTree = "<group>"; };
 		19667403225E8AFB004C08EA /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		1966A08D226C0C8200A5F074 /* LucyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyViewController.swift; sourceTree = "<group>"; };
+		19FE47B7226FCBAF00DA8B67 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../../../.Trash/Info.plist; sourceTree = "<group>"; };
 		458127972245AB3800DDBFF8 /* IHO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IHO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4581279A2245AB3800DDBFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4581279C2245AB3800DDBFF8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -112,11 +113,11 @@
 		458127992245AB3800DDBFF8 /* IHO */ = {
 			isa = PBXGroup;
 			children = (
+				19FE47B7226FCBAF00DA8B67 /* Info.plist */,
 				1958A1A42263B7F0004F691F /* lucy_skull.png */,
 				1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */,
 				1958A19E2263B7BE004F691F /* lucy.png */,
 				1958A19C2263B7A0004F691F /* lucy.html */,
-				458127B32245AB3900DDBFF8 /* Info.plist */,
 				4581279A2245AB3800DDBFF8 /* AppDelegate.swift */,
 				4581279C2245AB3800DDBFF8 /* art.scnassets */,
 				4581279E2245AB3800DDBFF8 /* ViewController.swift */,
@@ -133,6 +134,7 @@
 		458127B02245AB3900DDBFF8 /* IHOTests */ = {
 			isa = PBXGroup;
 			children = (
+				458127B32245AB3900DDBFF8 /* Info.plist */,
 				458127B12245AB3900DDBFF8 /* IHOTests.swift */,
 			);
 			path = IHOTests;
@@ -464,14 +466,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C36GJA9N9V;
+				DEVELOPMENT_TEAM = PZB7UGJXSL;
 				INFOPLIST_FILE = IHO/Info.plist;
 				"INFOPLIST_FILE[sdk=*]" = IHO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = VineeshaIHO;
+				PRODUCT_BUNDLE_IDENTIFIER = "First-App.IHO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -485,13 +487,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C36GJA9N9V;
+				DEVELOPMENT_TEAM = PZB7UGJXSL;
 				INFOPLIST_FILE = IHO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = VineeshaIHO;
+				PRODUCT_BUNDLE_IDENTIFIER = "First-App.IHO";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
