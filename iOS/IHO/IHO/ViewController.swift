@@ -14,7 +14,9 @@ import WebKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavigationDelegate{
    
+    @IBOutlet weak var webview: UIWebView!
     @IBOutlet var sceneView: ARSCNView!
+    var htmlpath: String? = nil
     //Create Our ARWorld Tracking Configuration
     let configuration = ARWorldTrackingConfiguration()
     //Create Our Session
@@ -65,18 +67,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        twoDLucyView.uiDelegate = self
-//        twoDLucyView.navigationDelegate = self
-//
-//        if #available(iOS 11, *) {
-//            let url = Bundle.main.url(forResource: "lucy", withExtension: "html", subdirectory: "IHO")!
-//            twoDLucyView.loadFileURL(url, allowingReadAccessTo: url)
-//            let request = URLRequest(url: url)
-//            twoDLucyView.load(request)
-//        }
-        
-        
         // Set the view's delegate
         sceneView.delegate = self
         // Show statistics such as fps and timing information
@@ -96,6 +86,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         addButton(boneName: "Face", x: -0.16, y: 0.11, z: 0.02, sx: 0.006, sy: 0.006, sz: 0.006)
         addButton(boneName: "Brain", x: -0.15, y: 0.142, z: 0.01, sx: 0.006, sy: 0.006, sz: 0.006)
     }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         guard let touchLocation = touches.first?.location(in: sceneView),
@@ -144,7 +135,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         alert.view.tintColor = UIColor.white
         
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -162,21 +153,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         sceneView.session.pause()
     }
     
-    
-    let LucyView = LucyViewController()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if #available(iOS 11, *){
-            //LucyView.viewDidLoad()
-                    //viewdidappear
+            
+            webview.isHidden = true
+            sceneView.isHidden = false
+            
+            
         }
         else
         {
-            let alertController = UIAlertController(title: "IOS Version", message: "SORRY!!Your IOS version is not compatible with Augmented Reality Feature", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-
-            LucyView.viewDidLoad()
+            webview.isHidden = false
+            sceneView.isHidden = true
+            htmlpath = Bundle.main.path(forResource: "lucy", ofType: "html")
+            let html = try? String(contentsOfFile: htmlpath!, encoding: String.Encoding.utf8)
+            let baseURL = URL(fileURLWithPath: "\(Bundle.main.bundlePath)")
+            self.webview.scalesPageToFit = false
+            self.webview.loadHTMLString(html!, baseURL: baseURL)
+            self.webview.scrollView.isScrollEnabled = true
         }
     }
     
@@ -228,6 +223,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         
     }
     
-    
+    }
  
-}
+
