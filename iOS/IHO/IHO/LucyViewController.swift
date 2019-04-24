@@ -72,5 +72,44 @@ class LucyViewController: UIViewController, WKUIDelegate, WKNavigationDelegate{
 //        twoDLucyView.load(myRequest)
     }
     
+    
+//    /// Creates An SCNNode With A Plane Geometry & UIView As A Material
+//    func createUIViewOnNode(){
+//
+//        //1. Create An Empty Node
+//        let holderNode = SCNNode()
+//
+//        //2. Set It's Geometry As An SCNPlane
+//        holderNode.geometry = SCNPlane(width: 0.6, height: 0.3)
+//
+//        //2. Create A New Material
+//        let material = SCNMaterial()
+//
+//        //3. Create A UIView As A Holder For Content
+//        let viewToAdd = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+//        viewToAdd.backgroundColor = .white
+//
+//        //4. Create Two Subviews
+//        let redView = UIView(frame: CGRect(x: 10, y: 10, width: 100, height: 100))
+//        redView.backgroundColor = .red
+//        viewToAdd.addSubview(redView)
+//
+//        let cyanView = UIView(frame: CGRect(x: 110, y: 10, width: 100, height: 100))
+//        cyanView.backgroundColor = .cyan
+//        viewToAdd.addSubview(cyanView)
+//
+//        //5. Set The Materials Contents
+//        material.diffuse.contents = viewToAdd
+//
+//        //6. Set The 1st Material Of The Plane
+//        holderNode.geometry?.firstMaterial = material
+//        material.isDoubleSided = true
+//
+//        //7. Add To The Scene & Position It
+//        augmentedRealityView.scene.rootNode.addChildNode(holderNode)
+//
+//        holderNode.position = SCNVector3(0, 0, -1.5)
+//    }
+    
 
 }
