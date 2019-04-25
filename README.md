@@ -4,7 +4,7 @@ IHO App - Virtual Reality Enhancement
 
 ## Problem Statement
 
-Develop Android and iOS augmented reality (AR) applications with a 3D model of the skeleton of Lucy and relevant information.
+Develop Android and iOS augmented reality (AR) applications with a 3D model of the skeleton of Lucy and provide relevant information about the respective parts.
 
 ## Project Description
 
