@@ -24,6 +24,8 @@ The master branch contains the code for iOS and Android applications of the IHO 
 * Xcode 9
 
 #### Android
+* Android Studio version 3.1 or higher with Android SDK Platform version 7.0 (API level 24) or higher.
+* Android Emulator version 27.2.9 or later or android device with Android version 7.0 or higher.
 
 ## Running the IHO App
 
