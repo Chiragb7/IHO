@@ -28,6 +28,12 @@ The master branch contains the code for iOS and Android applications of the IHO 
 ## Running the IHO App
 
 ### iOS
+* Clone or download the github repository.
+* Go to the folder ioS and import the project IHO into Xcode.
+* Add your developer account, i.e., Apple ID and password to the codebase.
+* Go to Settings->General->Profile and trust the created profile in your phone or iPad to give access to install the application.
+* Build and run the application on Xcode.
+* The application will be installed and run in the phone or iPad.
 
 ### Android
 * Clone or download the github repository.
