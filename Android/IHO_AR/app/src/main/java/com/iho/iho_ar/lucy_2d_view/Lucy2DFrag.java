@@ -1,5 +1,6 @@
 package com.iho.iho_ar.lucy_2d_view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.iho.iho_ar.R;
 
 public class Lucy2DFrag extends Fragment {
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
