@@ -24,13 +24,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet weak var twoDLucyView: WKWebView!
   
-       @objc func addLucy(x: Float = 0, y: Float = 0, z: Float = 0) {
-
-        
+    func addLucy(x: Float = 0.05, y: Float = 0, z: Float = -0.4) {
         guard let LucyScene = SCNScene(named: "art.scnassets/Lucy.scn") else { return }
         let LucyNode = SCNNode()
         let LucySceneChildNodes = LucyScene.rootNode.childNodes
-        
         for childNode in LucySceneChildNodes {
             LucyNode.addChildNode(childNode)
         }
@@ -38,17 +35,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         LucyNode.scale = SCNVector3(0.002, 0.002, 0.002)
         sceneView.scene.rootNode.addChildNode(LucyNode)
     }
-    
     func configureLighting(){
-        
     sceneView.autoenablesDefaultLighting = true
     sceneView.automaticallyUpdatesLighting = true
-    
-    }
-    
-    func addTapGestureToSceneView() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addLucy(x:y:z:)))
-        sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func addButton(boneName: String, x: Float, y: Float, z: Float, sx: Float, sy: Float, sz: Float) {
@@ -71,68 +60,35 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
         sceneView.delegate = self
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        addTapGestureToSceneView()
+        //addTapGestureToSceneView()
         configureLighting()
         addLucy()
-        addButton(boneName: "rightLeg", x: -0.1, y: -0.1, z: -0.001, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "rightFeet", x: -0.07, y: -0.26, z: 0.02, sx: 0.006, sy: 0.01, sz: 0.006)
-        addButton(boneName: "rightFingers", x: 0.095, y: 0.08, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "rightHand", x: -0.06, y: 0.08, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "rightHip", x: -0.11, y: -0.04, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "spine", x: -0.146, y: -0.01, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "leftLegBone", x: -0.21, y: -0.18, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "leftHand", x: -0.2, y: 0.085, z: 0, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "Jaw", x: -0.15, y: 0.085, z: 0.02, sx: 0.006, sy: 0.006, sz: 0.009)
-        addButton(boneName: "Face", x: -0.16, y: 0.11, z: 0.02, sx: 0.006, sy: 0.006, sz: 0.006)
-        addButton(boneName: "Brain", x: -0.15, y: 0.142, z: 0.01, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Thigh", x: -0.049, y: -0.1, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Foot", x: -0.024, y: -0.25, z: -0.37, sx: 0.006, sy: 0.01, sz: 0.006)
+        addButton(boneName: "Hand", x: 0.14, y: 0.085, z: -0.39, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "rightArm", x: -0.015, y: 0.085, z: -0.39, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Hip", x: -0.068, y: -0.04, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "spine", x: -0.1, y: -0.01, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Knee", x: -0.16, y: -0.16, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "leftArm", x: -0.2, y: 0.085, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Jaw", x: -0.1, y: 0.085, z: -0.37, sx: 0.006, sy: 0.006, sz: 0.009)
+        addButton(boneName: "Face", x: -0.1, y: 0.11, z: -0.37, sx: 0.006, sy: 0.006, sz: 0.006)
+        addButton(boneName: "Skull", x: -0.1, y: 0.148, z: -0.4, sx: 0.006, sy: 0.006, sz: 0.006)
     }
 
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         guard let touchLocation = touches.first?.location(in: sceneView),
             let hitNode = sceneView?.hitTest(touchLocation, options: nil).first?.node,
             let nodeName = hitNode.name
-            else{
+        else {
                 return
         }
-        
-        // Create an object for the class "popUpMessages" swift class
         let popUpMessage = popUpMessages()
         
-        //Creating font size and Color of the text of the popUp message
-        //The respective text is obtained by calling the dictionary "popUpDict" of class "popUpMessages" using the object created
-        
-        let attributedString = NSAttributedString(string: popUpMessage.popUpDict[nodeName]!, attributes: [
-            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18),
-            NSAttributedString.Key.foregroundColor : UIColor.white
-            ])
-        
-        //Creating font size and Color of the text of the popUp title
-        //The respective text is obtained by calling the dictionary "popUpTitle" of class "popUpMessages" using the object created
-        let attributedTitle = NSAttributedString(string: popUpMessage.popUpTitle[nodeName]!, attributes: [
-            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24),
-            NSAttributedString.Key.foregroundColor : UIColor.white,
-            //NSAttributedString.Key.underlineStyle : UIStyle
-            ])
-
         // Adding alert to display the popUpText
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        
-        //Setting the different attributed styles for the Message and the Title of PopUp
-        alert.setValue(attributedTitle, forKey: "attributedTitle")
-        alert.setValue(attributedString, forKey: "attributedMessage")
-        
-        // Display the Alert and close accordingly
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+      let alert = UIAlertController(title: popUpMessage.popUpTitle[nodeName]!, message: popUpMessage.popUpDict[nodeName]!, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        
-        //Change the default background color of the pop up to Black
-        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-        subview.layer.cornerRadius = 0.5
-        subview.backgroundColor = UIColor.black
-        
-        //Change the color of the button "Close" to white
-        alert.view.tintColor = UIColor.white
         
     }
 
@@ -156,11 +112,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if #available(iOS 11, *){
-            
             webview.isHidden = true
             sceneView.isHidden = false
-            
-            
         }
         else
         {
@@ -196,7 +149,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, WKUIDelegate, WKNavig
             infoLabel.text = ""
         }
         // Present an error message to the user
-        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {

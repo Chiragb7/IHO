@@ -10,7 +10,6 @@
 		1958A19D2263B7A0004F691F /* lucy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1958A19C2263B7A0004F691F /* lucy.html */; };
 		1958A1A12263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai in Resources */ = {isa = PBXBuildFile; fileRef = 1958A1A02263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai */; };
 		19667404225E8AFB004C08EA /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 19667403225E8AFB004C08EA /* ic_launcher.png */; };
-		19FE47F62270221B00DA8B67 /* lucy.html in Resources */ = {isa = PBXBuildFile; fileRef = 19FE47F52270221A00DA8B67 /* lucy.html */; };
 		4581279B2245AB3800DDBFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279A2245AB3800DDBFF8 /* AppDelegate.swift */; };
 		4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4581279C2245AB3800DDBFF8 /* art.scnassets */; };
 		4581279F2245AB3800DDBFF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4581279E2245AB3800DDBFF8 /* ViewController.swift */; };
@@ -250,7 +249,6 @@
 				4581279D2245AB3800DDBFF8 /* art.scnassets in Resources */,
 				1958A19D2263B7A0004F691F /* lucy.html in Resources */,
 				458127A72245AB3900DDBFF8 /* LaunchScreen.storyboard in Resources */,
-				19FE47F62270221B00DA8B67 /* lucy.html in Resources */,
 				458127A42245AB3900DDBFF8 /* Assets.xcassets in Resources */,
 				1958A1A12263B7D5004F691F /* Lucy_FullSkeleton_uncolored.ai in Resources */,
 				458127A22245AB3800DDBFF8 /* Main.storyboard in Resources */,
