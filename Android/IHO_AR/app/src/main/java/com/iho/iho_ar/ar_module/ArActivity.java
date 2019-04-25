@@ -61,23 +61,6 @@ public class ArActivity extends AppCompatActivity implements ArView {
                         presenter.createNodes();
                     }
                 });
-        anchorNode.addLifecycleListener(new Node.LifecycleListener() {
-            @Override
-            public void onActivated(Node node) {
-                Toast.makeText(ArActivity.this,"Node activated", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onUpdated(Node node, FrameTime frameTime) {
-
-            }
-
-            @Override
-            public void onDeactivated(Node node) {
-                Toast.makeText(ArActivity.this,"Node Deactivated", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     @Override
@@ -113,6 +96,25 @@ public class ArActivity extends AppCompatActivity implements ArView {
 
     private void createNode(BoneModel boneModel){
         Node bone= new Node();
+
+        if(boneModel.getName().equals("Lucy")){
+            // Tracking the life cycle of the base model, so that we can let the user place another
+            // model after onDeactivated is called.
+            anchorNode.addLifecycleListener(new Node.LifecycleListener() {
+                @Override
+                public void onActivated(Node node) {
+                }
+
+                @Override
+                public void onUpdated(Node node, FrameTime frameTime) {
+                }
+
+                @Override
+                public void onDeactivated(Node node) {
+                    modelPlaced = false;
+                }
+            });
+        }
 
         bone.setParent(anchorNode);
         bone.setName(boneModel.getName());
