@@ -13,4 +13,18 @@
     <string name="right_arm"> Lucy was discovered in exposed sediment in Hadar, Ethiopia. Additional fossils belonging to her species have aldo been found in other sites in Ethiopia, Kenya, and Tanzania.</string>
     <string name="jaw">The Australopithecus jaw has a U-shaped in contrast with the modern humans whose jaw is parabolic. The jaw muscles are also much larger in comparison to humans.</string>
     <string name="head">Estimates of brain size range from 380 to 550 cubic centimeters(cc). This is similar in size to that of chimpanzees who awerage 395 cc and much smaller than modern humans who average 1475cc.</string>
+    <string name="face">Australopithecus afarensis had a strongly protuding face similar to that of chimpanzees while humans are characterized by short faces.</string>
+    <string name="skull_title">Skull</string>
+    <string name="face_title">Face</string>
+    <string name="jaw_title">Jaw</string>
+    <string name="rArm_title">Arm</string>
+    <string name="lArm_title">Arm</string>
+    <string name="hand_title">Hand</string>
+    <string name="spine_title">Spine</string>
+    <string name="hip_title">Hip</string>
+    <string name="thigh_title">Thigh</string>
+    <string name="knee_title">Knee</string>
+    <string name="foot_title">Foot</string>
+    <string name="lucy_title">Lucy</string>
+
 </resources>

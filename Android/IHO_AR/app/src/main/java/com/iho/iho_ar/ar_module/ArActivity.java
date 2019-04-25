@@ -97,7 +97,7 @@ public class ArActivity extends AppCompatActivity implements ArView {
     private void createNode(BoneModel boneModel){
         Node bone= new Node();
 
-        if(boneModel.getName().equals("Lucy")){
+        if(boneModel.getName().equalsIgnoreCase(getResources().getString(R.string.lucy_title))){
             // Tracking the life cycle of the base model, so that we can let the user place another
             // model after onDeactivated is called.
             anchorNode.addLifecycleListener(new Node.LifecycleListener() {
@@ -112,6 +112,7 @@ public class ArActivity extends AppCompatActivity implements ArView {
                 @Override
                 public void onDeactivated(Node node) {
                     modelPlaced = false;
+                    Toast.makeText(ArActivity.this,"Deactivated",Toast.LENGTH_SHORT).show();
                 }
             });
         }
