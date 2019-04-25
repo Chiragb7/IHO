@@ -12,6 +12,7 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.FrameTime;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.collision.Sphere;
@@ -60,6 +61,23 @@ public class ArActivity extends AppCompatActivity implements ArView {
                         presenter.createNodes();
                     }
                 });
+        anchorNode.addLifecycleListener(new Node.LifecycleListener() {
+            @Override
+            public void onActivated(Node node) {
+                Toast.makeText(ArActivity.this,"Node activated", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onUpdated(Node node, FrameTime frameTime) {
+
+            }
+
+            @Override
+            public void onDeactivated(Node node) {
+                Toast.makeText(ArActivity.this,"Node Deactivated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
