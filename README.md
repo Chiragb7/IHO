@@ -30,6 +30,10 @@ The master branch contains the code for iOS and Android applications of the IHO 
 ### iOS
 
 ### Android
+* Clone or download the github repository.
+* Open the project in Android Studio and build the .apk file.
+* Transfer the .apk file in an Android device and install the .apk file
+* Run the application.
 
 ## Key Features of the Application
 
