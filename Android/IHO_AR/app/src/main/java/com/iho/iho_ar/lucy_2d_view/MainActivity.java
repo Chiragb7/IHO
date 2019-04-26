@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!checkIsSupportedDeviceOrFinish(this)){
+        if(!checkIsSupportedDevice(this)){
             Fragment fragment = new Lucy2DFrag();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.addToBackStack(null).replace(R.id.frame, fragment).commit();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean checkIsSupportedDeviceOrFinish(final Context context) {
+    public static boolean checkIsSupportedDevice(final Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             Log.e(TAG, context.getString(R.string.sceneform_error_android_ver));
             Toast.makeText(context, context.getString(R.string.sceneform_error_android_ver), Toast.LENGTH_LONG).show();

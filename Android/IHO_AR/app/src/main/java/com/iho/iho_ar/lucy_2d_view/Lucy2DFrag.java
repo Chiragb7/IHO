@@ -23,6 +23,9 @@ public class Lucy2DFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lucy2d, container, false);
         WebView webView = (WebView)(view.findViewById(R.id.web_view));
         WebSettings webSettings = webView.getSettings();
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setDisplayZoomControls(false);
         webSettings.setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("file:///android_asset/lucy.html");

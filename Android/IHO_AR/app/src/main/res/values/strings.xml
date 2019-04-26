@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IHO_AR</string>
+    <string name="app_name">IHO AR</string>
     <string name="lucy">Lucy</string>
     <string name="sceneform_error_android_ver">Sceneform requires Android N or later</string>
     <string name="sceneform_error_opengl_ver">Sceneform requires OpenGL ES 3.0 or later</string>

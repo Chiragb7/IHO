@@ -112,7 +112,6 @@ public class ArActivity extends AppCompatActivity implements ArView {
                 @Override
                 public void onDeactivated(Node node) {
                     modelPlaced = false;
-                    Toast.makeText(ArActivity.this,"Deactivated",Toast.LENGTH_SHORT).show();
                 }
             });
         }
