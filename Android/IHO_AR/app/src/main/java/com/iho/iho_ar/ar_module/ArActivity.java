@@ -1,13 +1,10 @@
 package com.iho.iho_ar.ar_module;
 
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
+
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
@@ -15,34 +12,32 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.FrameTime;
 import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
+import com.google.ar.sceneform.collision.Sphere;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.iho.iho_ar.R;
 import com.iho.iho_ar.Util;
 import com.iho.iho_ar.models.BoneModel;
-import com.iho.iho_ar.models.BoneModelList;
 
 import java.util.List;
 
 public class ArActivity extends AppCompatActivity implements ArView {
     private static final String TAG = ArActivity.class.getSimpleName();
-    private static final double MIN_OPENGL_VERSION = 3.0;
     private ArFragment arFragment;
     private ArPresenter presenter;
-    AnchorNode anchorNode;
+    private boolean modelPlaced = false;
+    private AnchorNode anchorNode;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!checkIsSupportedDeviceOrFinish(this)){
-            return;
-        }
-
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ar);
 
         presenter = new ArPresenterImpl(this);
 
@@ -52,16 +47,19 @@ public class ArActivity extends AppCompatActivity implements ArView {
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (!presenter.renderablesReady()) {
-                        Toast.makeText(this,"Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    // Create the Anchor.
-                    Anchor anchor = hitResult.createAnchor();
-                    anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
+                    if(!modelPlaced) {
+                        modelPlaced = true;
+                        if (!presenter.renderablesReady()) {
+                            Toast.makeText(this, "Waiting for renderables to be available", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        // Create the Anchor.
+                        Anchor anchor = hitResult.createAnchor();
+                        anchorNode = new AnchorNode(anchor);
+                        anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-                    presenter.createNodes();
+                        presenter.createNodes();
+                    }
                 });
     }
 
@@ -97,39 +95,46 @@ public class ArActivity extends AppCompatActivity implements ArView {
     }
 
     private void createNode(BoneModel boneModel){
-
         Node bone= new Node();
+
+        if(boneModel.getName().equalsIgnoreCase(getResources().getString(R.string.lucy_title))){
+            // Tracking the life cycle of the base model, so that we can let the user place another
+            // model after onDeactivated is called.
+            anchorNode.addLifecycleListener(new Node.LifecycleListener() {
+                @Override
+                public void onActivated(Node node) {
+                }
+
+                @Override
+                public void onUpdated(Node node, FrameTime frameTime) {
+                }
+
+                @Override
+                public void onDeactivated(Node node) {
+                    modelPlaced = false;
+                }
+            });
+        }
+
         bone.setParent(anchorNode);
+        bone.setName(boneModel.getName());
         bone.setLocalPosition(boneModel.getPosition());
+        if(boneModel.getScale()!=null)
+            bone.setLocalScale(boneModel.getScale());
         bone.setRenderable(boneModel.getRenderable());
 
-        bone.setOnTapListener(new Node.OnTapListener() {
-            @Override
-            public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
-                presenter.createPopup(boneModel.getName(), boneModel.getDescription());
-            }
-        });
-    }
-
-    public static boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            Log.e(TAG, "Sceneform requires Android N or later");
-            Toast.makeText(activity, "Sceneform requires Android N or later", Toast.LENGTH_LONG).show();
-            activity.finish();
-            return false;
+        if(boneModel.isClickable()) {
+            bone.setOnTapListener(new Node.OnTapListener() {
+                @Override
+                public void onTap(HitTestResult hitTestResult, MotionEvent motionEvent) {
+                    presenter.createPopup(boneModel.getName(), boneModel.getDescription());
+                }
+            });
         }
-        String openGlVersionString =
-                ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
-                        .getDeviceConfigurationInfo()
-                        .getGlEsVersion();
-        if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
-            Log.e(TAG, "Sceneform requires OpenGL ES 3.0 later");
-            Toast.makeText(activity, "Sceneform requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
-                    .show();
-            activity.finish();
-            return false;
+        else {
+            // to avoid overlapping nodes not being able to handle onTap events properly
+            bone.setCollisionShape(new Sphere(0.001f, new Vector3(0,0,0)));
         }
-        return true;
     }
 
     @Override
