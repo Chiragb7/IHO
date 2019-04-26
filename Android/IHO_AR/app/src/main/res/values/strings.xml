@@ -17,11 +17,11 @@
     <string name="skull_title">Skull</string>
     <string name="face_title">Face</string>
     <string name="jaw_title">Jaw</string>
-    <string name="rArm_title">Arm</string>
-    <string name="lArm_title">Arm</string>
+    <string name="rArm_title">Right Arm</string>
+    <string name="lArm_title">Left Arm</string>
     <string name="hand_title">Hand</string>
     <string name="spine_title">Spine</string>
-    <string name="hip_title">Hip</string>
+    <string name="hip_title">Pelvis</string>
     <string name="thigh_title">Thigh</string>
     <string name="knee_title">Knee</string>
     <string name="foot_title">Foot</string>
