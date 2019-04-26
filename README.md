@@ -46,8 +46,8 @@ The master branch contains the code for iOS and Android applications of the IHO 
 ## Key Features of the Application
 
 * A 3D-view of Lucy such that we can have a 360 degree view of the 3D model.
-* A pop-up dialog box with relevant information reagrding different Lucy parts when the rspective button is tapped.
-* Check the AR compatibility of the device the application is runnin on and inform the user accordingly.
+* A pop-up dialog box with relevant information regarding different Lucy parts when the respective button is tapped.
+* Check the AR compatibility of the device the application is running on and inform the user accordingly.
 
 ## YouTube Video Link
 
@@ -64,5 +64,5 @@ The video about our application can be found at [here]()
 
 ## Possible Enhancements
 
-* Integration of the developed AR applications, iOS and Android, with the existing application available in AppStore and Google Play Store respectively.
+* Integration of the developed AR applications in iOS and Android, with the existing application available in AppStore and Google Play Store respectively.
 * The application can be extended to include an AR game with Lucy.
