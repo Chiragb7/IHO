@@ -51,7 +51,7 @@ The master branch contains the code for iOS and Android applications of the IHO 
 
 ## YouTube Video Link
 
-The video about our application can be found at [here]() 
+The video about our application can be found at [here](https://youtu.be/W3zpAWYnIGI) 
 
 ## Authors
 
